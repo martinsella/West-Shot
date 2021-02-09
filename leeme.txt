@@ -1,0 +1,7 @@
+v0.1:
+	* Implementación del menú de selección de idiomas.
+	* Implementación del menú principal.
+	* Implementación del menú de créditos.
+	* Implementación del primer nivel.
+	* Implementación del jugador.
+	* Seteo de animaciones básicas: Caminar.
