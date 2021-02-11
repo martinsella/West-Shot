@@ -4,9 +4,11 @@ class main extends Phaser.Scene {
   }
 
   create() {
+    //main.
     this.add.image(680, 384, "main");
     this.add.image(299, 215, "title");
 
+    //buttons.
     b_play = this.add
       .image(1095, 215, "b_play_" + lang)
       .setInteractive()

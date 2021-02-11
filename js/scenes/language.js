@@ -4,8 +4,10 @@ class language extends Phaser.Scene {
   }
 
   create() {
+    //menu.
     this.add.image(680, 384, "language");
 
+    //buttons.
     b_es = this.add
       .image(470, 359, "b_es")
       .setInteractive()

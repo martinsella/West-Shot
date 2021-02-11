@@ -30,6 +30,8 @@ class preloader extends Phaser.Scene {
     this.load.image("b_en_over", "assets/images/undefined/buttons/b_en_over.png");
     this.load.image("b_es", "assets/images/undefined/buttons/b_es.png");
     this.load.image("b_es_over", "assets/images/undefined/buttons/b_es_over.png");
+    this.load.image("b_back", "assets/images/undefined/buttons/b_back.png");
+    this.load.image("b_back_over", "assets/images/undefined/buttons/b_back_over.png");
     //english.
     this.load.image("b_collection_en", "assets/images/english/buttons/b_collection_en.png");
     this.load.image("b_collection_over_en", "assets/images/english/buttons/b_collection_over_en.png");
@@ -50,26 +52,32 @@ class preloader extends Phaser.Scene {
     this.load.image("b_play_over_es", "assets/images/spanish/buttons/b_play_over_es.png");
 
     //text load.
+    this.load.image("count_fire_1", "assets/images/undefined/levels/count_fire_1.png");
+    this.load.image("count_fire_2", "assets/images/undefined/levels/count_fire_2.png");
+    this.load.image("count_fire_3", "assets/images/undefined/levels/count_fire_3.png");
     //english.
     this.load.image("cred_text_en", "assets/images/english/texts/cred_text_en.png");
+    this.load.image("count_fire_en", "assets/images/english/texts/count_fire_en.png");
     //spanish.
     this.load.image("cred_text_es", "assets/images/spanish/texts/cred_text_es.png");
+    this.load.image("count_fire_es", "assets/images/spanish/texts/count_fire_es.png");
 
     //players load.
     this.load.spritesheet("player","assets/images/undefined/objects/player.png",
       {
-        frameHeight: 800,
-        frameWidth: 500,
+        frameHeight: 380,
+        frameWidth: 350,
       }
     );
     this.load.spritesheet("enemy","assets/images/undefined/objects/enemy.png",
       {
-        frameHeight: 800,
-        frameWidth: 500,
+        frameHeight: 380,
+        frameWidth: 350,
       }
     );
-
+    
     //levels load.
+    this.load.image("count_background", "assets/images/undefined/levels/count_background.png");
     //level 1.
     this.load.image("level_1_sky", "assets/images/undefined/levels/level_1_sky.png");
     this.load.image("level_1_cloud_1", "assets/images/undefined/levels/level_1_cloud_1.png");

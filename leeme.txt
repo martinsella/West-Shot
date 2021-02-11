@@ -1,7 +1,13 @@
-v0.1:
-	* Implementación del menú de selección de idiomas.
-	* Implementación del menú principal.
-	* Implementación del menú de créditos.
-	* Implementación del primer nivel.
-	* Implementación del jugador.
-	* Seteo de animaciones básicas: Caminar.
+v1.0:
+	* ImplementaciÃ³n del menÃº de selecciÃ³n de idiomas.
+	* ImplementaciÃ³n del menÃº principal.
+	* ImplementaciÃ³n del menÃº de crÃ©ditos.
+	* ImplementaciÃ³n del primer nivel.
+	* ImplementaciÃ³n del jugador.
+	* ImplementaciÃ³n de animaciÃ³n: Caminar.
+
+v1.1:
+	* AÃ±adido botÃ³n de back en el menÃº de crÃ©ditos.
+	* AÃ±adidos los botones de mÃºsica, sfx y pantalla completa durante el gameplay.
+	* ImplementaciÃ³n del conteo pre-gameplay.
+	* ImplementaciÃ³n de animaciÃ³n: Disparo.
