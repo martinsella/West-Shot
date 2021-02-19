@@ -11,3 +11,8 @@ v1.1:
 	* Added music, sfx and full screen buttons during gameplay.
 	* Implementation of the pre-gameplay count.
 	* Animation implementation: Shot.
+
+v1.2:
+	* Added level selection menu.
+	* Added the back button in multiple menus.
+	* Added buttons that indicate actions during gameplay.

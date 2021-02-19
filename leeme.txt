@@ -11,3 +11,8 @@ v1.1:
 	* Añadidos los botones de música, sfx y pantalla completa durante el gameplay.
 	* Implementación del conteo pre-gameplay.
 	* Implementación de animación: Disparo.
+
+v1.2:
+	* Añadido del menu de selección de niveles.
+	* Añadido el botón de back en múltiples menús.
+	* Añadido de botones que indican acciones durante el gameplay.

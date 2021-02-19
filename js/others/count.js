@@ -1,7 +1,9 @@
+import { playerMov } from "../classes/player.js";
 import { enemyMov } from "../classes/enemy.js";
 
 //rest of the count.
 export function count_2() {
+  walk = false;
   count.setTexture("count_fire_2");
   this.time.addEvent({
     delay: 1500,
@@ -32,11 +34,19 @@ export function count_out() {
   count_b.destroy();
   count.destroy();
   this.physics.resume();
-  //default controls.
-  cursors = this.input.keyboard.createCursorKeys();
+  //player and enemy can't out.
+  player.setCollideWorldBounds(true);
+  enemy.setCollideWorldBounds(true);
+  //player movement.
+  this.time.addEvent({
+    delay: 3000,
+    callback: playerMov,
+    callbackScope: this,
+    loop: true,
+  });
   //enemy movement.
   this.time.addEvent({
-    delay: 300,
+    delay: 3000,
     callback: enemyMov,
     callbackScope: this,
     loop: true,

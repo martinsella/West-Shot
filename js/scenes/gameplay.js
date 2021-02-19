@@ -8,7 +8,7 @@ class gameplay extends Phaser.Scene {
   }
 
   create() {
-    //level.
+    //level 1.
     this.add.image(680, 384, "level_1_sky");
     this.physics.add.image(1480, 74, "level_1_cloud_1").setVelocityX(-20);
     this.physics.add.image(1780, 164, "level_1_cloud_2").setVelocityX(-20);
@@ -59,78 +59,60 @@ class gameplay extends Phaser.Scene {
 
     //player anims.
     this.anims.create({
-      key: "playerLeft",
-      frames: this.anims.generateFrameNumbers("player", {
-        start: 0,
-        end: 13,
-      }),
-      frameRate: 25,
-      repeat: -1,
-    });
-    this.anims.create({
       key: "playerRight",
-      frames: this.anims.generateFrameNumbers("player", {
+      frames: this.anims.generateFrameNumbers("player_walk", {
         start: 0,
         end: 13,
       }),
-      frameRate: 25,
+      frameRate: 30,
       repeat: -1,
     });
     this.anims.create({
       key: "playerStop",
-      frames: [{ key: "player", frame: 13 }],
-      frameRate: 25,
+      frames: [{ key: "player_walk", frame: 12 }],
+      frameRate: 30,
       repeat: -1,
     });
     this.anims.create({
       key: "playerShoot",
-      frames: this.anims.generateFrameNumbers("player", {
-        start: 14,
-        end: 43,
+      frames: this.anims.generateFrameNumbers("player_shoot", {
+        start: 0,
+        end: 29,
       }),
-      frameRate: 25,
+      frameRate: 35,
       repeat: 0,
     });
 
     //enemy anims.
     this.anims.create({
       key: "enemyLeft",
-      frames: this.anims.generateFrameNumbers("enemy", {
-        start: 43,
-        end: 30,
+      frames: this.anims.generateFrameNumbers("enemy_walk", {
+        start: 13,
+        end: 0,
       }),
-      frameRate: 25,
-      repeat: -1,
-    });
-    this.anims.create({
-      key: "enemyRight",
-      frames: this.anims.generateFrameNumbers("enemy", {
-        start: 43,
-        end: 30,
-      }),
-      frameRate: 25,
+      frameRate: 30,
       repeat: -1,
     });
     this.anims.create({
       key: "enemyStop",
-      frames: [{ key: "enemy", frame: 0 }],
-      frameRate: 25,
+      frames: [{ key: "enemy_walk", frame: 1 }],
+      frameRate: 30,
       repeat: -1,
     });
     this.anims.create({
       key: "enemyShoot",
-      frames: this.anims.generateFrameNumbers("enemy", {
+      frames: this.anims.generateFrameNumbers("enemy_shoot", {
         start: 29,
         end: 0,
       }),
-      frameRate: 25,
+      frameRate: 35,
       repeat: 0,
     });
 
     //player.
-    player = new Player({ scene: this, x: 300, y: 550, texture: "player" });
-    enemy = new Enemy({ scene: this, x: 1060, y: 550, texture: "enemy" });
-    this.count_3();
+    player = new Player({ scene: this, x: -80, y: 550, texture: "player_walk" });
+    enemy = new Enemy({ scene: this, x: 1470, y: 550, texture: "enemy_walk" });
+    walk = true;
   }
 
   //count.
@@ -146,6 +128,14 @@ class gameplay extends Phaser.Scene {
       callbackScope: this,
       loop: false,
     });
+  }
+  update() {
+    if (player.x == 200 && walk == true) {
+      player.anims.play("playerStop", true)
+      enemy.anims.play("enemyStop", true)
+      walk = false;
+      this.count_3();
+    }
   }
 }
 

@@ -5,8 +5,8 @@ class main extends Phaser.Scene {
 
   create() {
     //main.
-    this.add.image(680, 384, "main");
-    this.add.image(299, 215, "title");
+    this.add.image(680, 384, "main_background");
+    this.add.image(299, 215, "main_title");
 
     //buttons.
     b_play = this.add
@@ -14,7 +14,7 @@ class main extends Phaser.Scene {
       .setInteractive()
       .on("pointerover", () => b_play.setTexture("b_play_over_" + lang))
       .on("pointerout", () => b_play.setTexture("b_play_" + lang))
-      .on("pointerdown", () => this.scene.start("gameplay"));
+      .on("pointerdown", () => this.scene.start("selector"));
 
     b_collection = this.add
       .image(1081, 335, "b_collection_" + lang)

@@ -5,10 +5,12 @@ class preloader extends Phaser.Scene {
 
   preload() {
     //menus load.
-    this.load.image("main", "assets/images/undefined/menus/main.png");
-    this.load.image("title", "assets/images/undefined/menus/title.png");
+    this.load.image("main_background", "assets/images/undefined/menus/main_background.png");
+    this.load.image("menus_background", "assets/images/undefined/menus/menus_background.png");
+    this.load.image("main_title", "assets/images/undefined/menus/main_title.png");
     this.load.image("language", "assets/images/undefined/menus/language.png");
-    this.load.image("credits", "assets/images/undefined/menus/credits.png");
+    this.load.image("credits_chart", "assets/images/undefined/menus/credits_chart.png");
+    this.load.image("selector_chart", "assets/images/undefined/menus/selector_chart.png");
 
     //buttons load.
     //undefined.
@@ -32,6 +34,20 @@ class preloader extends Phaser.Scene {
     this.load.image("b_es_over", "assets/images/undefined/buttons/b_es_over.png");
     this.load.image("b_back", "assets/images/undefined/buttons/b_back.png");
     this.load.image("b_back_over", "assets/images/undefined/buttons/b_back_over.png");
+    this.load.image("b_1", "assets/images/undefined/buttons/b_1.png");
+    this.load.image("b_block", "assets/images/undefined/buttons/b_block.png");
+    this.load.image("b_w", "assets/images/undefined/buttons/b_w.png");
+    this.load.image("b_w_false", "assets/images/undefined/buttons/b_w_false.png");
+    this.load.image("b_w_true", "assets/images/undefined/buttons/b_w_true.png");
+    this.load.image("b_a", "assets/images/undefined/buttons/b_a.png");
+    this.load.image("b_a_false", "assets/images/undefined/buttons/b_a_false.png");
+    this.load.image("b_a_true", "assets/images/undefined/buttons/b_a_true.png");
+    this.load.image("b_s", "assets/images/undefined/buttons/b_s.png");
+    this.load.image("b_s_false", "assets/images/undefined/buttons/b_s_false.png");
+    this.load.image("b_s_true", "assets/images/undefined/buttons/b_s_true.png");
+    this.load.image("b_d", "assets/images/undefined/buttons/b_d.png");
+    this.load.image("b_d_false", "assets/images/undefined/buttons/b_d_false.png");
+    this.load.image("b_d_true", "assets/images/undefined/buttons/b_d_true.png");
     //english.
     this.load.image("b_collection_en", "assets/images/english/buttons/b_collection_en.png");
     this.load.image("b_collection_over_en", "assets/images/english/buttons/b_collection_over_en.png");
@@ -52,6 +68,7 @@ class preloader extends Phaser.Scene {
     this.load.image("b_play_over_es", "assets/images/spanish/buttons/b_play_over_es.png");
 
     //text load.
+    //undefined.
     this.load.image("count_fire_1", "assets/images/undefined/levels/count_fire_1.png");
     this.load.image("count_fire_2", "assets/images/undefined/levels/count_fire_2.png");
     this.load.image("count_fire_3", "assets/images/undefined/levels/count_fire_3.png");
@@ -63,13 +80,25 @@ class preloader extends Phaser.Scene {
     this.load.image("count_fire_es", "assets/images/spanish/texts/count_fire_es.png");
 
     //players load.
-    this.load.spritesheet("player","assets/images/undefined/objects/player.png",
+    this.load.spritesheet("player_walk","assets/images/undefined/objects/player_walk.png",
       {
         frameHeight: 380,
         frameWidth: 350,
       }
     );
-    this.load.spritesheet("enemy","assets/images/undefined/objects/enemy.png",
+    this.load.spritesheet("player_shoot","assets/images/undefined/objects/player_shoot.png",
+      {
+        frameHeight: 380,
+        frameWidth: 350,
+      }
+    );
+    this.load.spritesheet("enemy_walk","assets/images/undefined/objects/enemy_walk.png",
+      {
+        frameHeight: 380,
+        frameWidth: 350,
+      }
+    );
+    this.load.spritesheet("enemy_shoot","assets/images/undefined/objects/enemy_shoot.png",
       {
         frameHeight: 380,
         frameWidth: 350,
