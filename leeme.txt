@@ -16,3 +16,8 @@ v1.2:
 	* Añadido del menu de selección de niveles.
 	* Añadido el botón de back en múltiples menús.
 	* Añadido de botones que indican acciones durante el gameplay.
+
+v1.3:
+	* Cambio de mecánica principal en el juego.
+	* implementación de una barra de vida para cada vaquero.
+	* Corrección de bugs.

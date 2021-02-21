@@ -109,7 +109,7 @@ class gameplay extends Phaser.Scene {
       repeat: 0,
     });
 
-    //player.
+    //player and enemy.
     player = new Player({ scene: this, x: -80, y: 550, texture: "player_walk" });
     enemy = new Enemy({ scene: this, x: 1470, y: 550, texture: "enemy_walk" });
     walk = true;

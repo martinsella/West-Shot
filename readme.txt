@@ -16,3 +16,8 @@ v1.2:
 	* Added level selection menu.
 	* Added the back button in multiple menus.
 	* Added buttons that indicate actions during gameplay.
+
+v1.3:
+	* Change of main mechanics in the game.
+	* Implementation of a life bar for each cowboy.
+	* bugs fixes.

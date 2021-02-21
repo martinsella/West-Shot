@@ -10,14 +10,20 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
   update() {
     if (walk == true) {
       enemy.anims.play("enemyLeft", true).setVelocityX(-150);
-    } else if (pattern2 < 0.7) {
+    } else if (pattern2 < 0.5) {
       enemy.anims.play("enemyShoot", true).setVelocityX(0);
+      if (playerShoot !== true && enemyShoot == false) {
+        playerBar
+          .clear()
+          .fillRect(100, 390, (playerHealth -= 30), 19);
+      }
       enemyShoot = true;
-    } else if (pattern2 >= 0.7 && pattern2 <= 1) {
+    } else if (pattern2 >= 0.5 && pattern2 <= 1) {
       enemy.anims.play("enemyStop", true).setVelocityX(0);
     }
     if (enemy.anims.currentFrame.frame.name == 0) {
       pattern2 = 2;
+      enemyShoot = false;
       enemy.anims.play("enemyStop", true);
     }
   }

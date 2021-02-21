@@ -37,6 +37,17 @@ export function count_out() {
   //player and enemy can't out.
   player.setCollideWorldBounds(true);
   enemy.setCollideWorldBounds(true);
+  //player and enemy health bar.
+  playerBar = this.add
+    .graphics()
+    .clear()
+    .fillRect(100, 390, playerHealth, 19)
+    .fillStyle(0x2F933E, 1);
+  enemyBar = this.add
+    .graphics()
+    .clear()
+    .fillRect(1135, 390, enemyHealth, 19)
+    .fillStyle(0x2F933E, 1);
   //player movement.
   this.time.addEvent({
     delay: 3000,

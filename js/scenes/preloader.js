@@ -94,7 +94,7 @@ class preloader extends Phaser.Scene {
     );
     this.load.spritesheet("enemy_walk","assets/images/undefined/objects/enemy_walk.png",
       {
-        frameHeight: 380,
+        frameHeight: 379,
         frameWidth: 350,
       }
     );
