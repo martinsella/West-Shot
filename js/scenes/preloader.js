@@ -11,6 +11,7 @@ class preloader extends Phaser.Scene {
     this.load.image("language", "assets/images/undefined/menus/language.png");
     this.load.image("credits_chart", "assets/images/undefined/menus/credits_chart.png");
     this.load.image("selector_chart", "assets/images/undefined/menus/selector_chart.png");
+    this.load.image("pause", "assets/images/undefined/menus/pause.png");
 
     //buttons load.
     //undefined.
@@ -48,6 +49,8 @@ class preloader extends Phaser.Scene {
     this.load.image("b_d", "assets/images/undefined/buttons/b_d.png");
     this.load.image("b_d_false", "assets/images/undefined/buttons/b_d_false.png");
     this.load.image("b_d_true", "assets/images/undefined/buttons/b_d_true.png");
+    this.load.image("b_pause", "assets/images/undefined/buttons/b_pause.png");
+    this.load.image("b_pause_over", "assets/images/undefined/buttons/b_pause_over.png");
     //english.
     this.load.image("b_collection_en", "assets/images/english/buttons/b_collection_en.png");
     this.load.image("b_collection_over_en", "assets/images/english/buttons/b_collection_over_en.png");
@@ -57,6 +60,9 @@ class preloader extends Phaser.Scene {
     this.load.image("b_help_over_en", "assets/images/english/buttons/b_help_over_en.png");
     this.load.image("b_play_en", "assets/images/english/buttons/b_play_en.png");
     this.load.image("b_play_over_en", "assets/images/english/buttons/b_play_over_en.png");
+    this.load.image("b_resume_en", "assets/images/english/buttons/b_resume_en.png");
+    this.load.image("b_help_2_en", "assets/images/english/buttons/b_help_2_en.png");
+    this.load.image("b_main_en", "assets/images/english/buttons/b_main_en.png");
     //spanish.
     this.load.image("b_collection_es", "assets/images/spanish/buttons/b_collection_es.png");
     this.load.image("b_collection_over_es", "assets/images/spanish/buttons/b_collection_over_es.png");
@@ -66,6 +72,9 @@ class preloader extends Phaser.Scene {
     this.load.image("b_help_over_es", "assets/images/spanish/buttons/b_help_over_es.png");
     this.load.image("b_play_es", "assets/images/spanish/buttons/b_play_es.png");
     this.load.image("b_play_over_es", "assets/images/spanish/buttons/b_play_over_es.png");
+    this.load.image("b_resume_es", "assets/images/spanish/buttons/b_resume_es.png");
+    this.load.image("b_help_2_es", "assets/images/spanish/buttons/b_help_2_es.png");
+    this.load.image("b_main_es", "assets/images/spanish/buttons/b_main_es.png");
 
     //text load.
     //undefined.
@@ -75,9 +84,11 @@ class preloader extends Phaser.Scene {
     //english.
     this.load.image("cred_text_en", "assets/images/english/texts/cred_text_en.png");
     this.load.image("count_fire_en", "assets/images/english/texts/count_fire_en.png");
+    this.load.image("pause_text_en", "assets/images/english/texts/pause_text_en.png");
     //spanish.
     this.load.image("cred_text_es", "assets/images/spanish/texts/cred_text_es.png");
     this.load.image("count_fire_es", "assets/images/spanish/texts/count_fire_es.png");
+    this.load.image("pause_text_es", "assets/images/spanish/texts/pause_text_es.png");
 
     //players load.
     this.load.spritesheet("player_walk","assets/images/undefined/objects/player_walk.png",

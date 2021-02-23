@@ -49,14 +49,14 @@ export function count_out() {
     .fillRect(1135, 390, enemyHealth, 19)
     .fillStyle(0x2F933E, 1);
   //player movement.
-  this.time.addEvent({
+  playerTimer = this.time.addEvent({
     delay: 3000,
     callback: playerMov,
     callbackScope: this,
     loop: true,
   });
   //enemy movement.
-  this.time.addEvent({
+  enemyTimer = this.time.addEvent({
     delay: 3000,
     callback: enemyMov,
     callbackScope: this,

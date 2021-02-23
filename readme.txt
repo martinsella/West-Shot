@@ -18,6 +18,10 @@ v1.2:
 	* Added buttons that indicate actions during gameplay.
 
 v1.3:
-	* Change of main mechanics in the game.
+	* Change of the main mechanics of the game.
 	* Implementation of a life bar for each cowboy.
-	* bugs fixes.
+	* Error correction.
+
+v1.4:
+	* Implementation of the pause menu.
+	* Optimization.

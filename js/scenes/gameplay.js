@@ -17,7 +17,7 @@ class gameplay extends Phaser.Scene {
 
     //buttons.
     b_music = this.add
-      .image(1220, 30, "b_music_on")
+      .image(1180, 30, "b_music_on")
       .setInteractive()
       .on("pointerover", () => b_music.setTexture("b_music_" + music + "_over"))
       .on("pointerout", () => b_music.setTexture("b_music_" + music))
@@ -31,7 +31,7 @@ class gameplay extends Phaser.Scene {
       });
 
     b_sfx = this.add
-      .image(1270, 30, "b_sfx_on")
+      .image(1220, 30, "b_sfx_on")
       .setInteractive()
       .on("pointerover", () => b_sfx.setTexture("b_sfx_" + sfx + "_over"))
       .on("pointerout", () => b_sfx.setTexture("b_sfx_" + sfx))
@@ -45,7 +45,7 @@ class gameplay extends Phaser.Scene {
       });
 
     b_full = this.add
-      .image(1330, 30, "b_full")
+      .image(1270, 30, "b_full")
       .setInteractive()
       .on("pointerover", () => b_full.setTexture("b_full_over"))
       .on("pointerout", () => b_full.setTexture("b_full"))
@@ -54,6 +54,26 @@ class gameplay extends Phaser.Scene {
           this.scale.stopFullscreen();
         } else {
           this.scale.startFullscreen();
+        }
+      });
+
+    b_pause = this.add
+      .image(1320, 30, "b_pause")
+      .setInteractive()
+      .on("pointerover", () => {
+        if (playerBar !== undefined && pause == undefined) {
+          b_pause.setTexture("b_pause_over");
+        }
+      })
+      .on("pointerout", () => {
+        if (playerBar !== undefined && pause == undefined) {
+          b_pause.setTexture("b_pause")
+        }
+      })
+      .on("pointerdown", () => {
+        if (playerBar !== undefined && pause == undefined) {
+          this.inPause();
+          b_pause.setTexture("b_pause");
         }
       });
 
@@ -110,11 +130,15 @@ class gameplay extends Phaser.Scene {
     });
 
     //player and enemy.
-    player = new Player({ scene: this, x: -80, y: 550, texture: "player_walk" });
+    player = new Player({
+      scene: this,
+      x: -80,
+      y: 550,
+      texture: "player_walk",
+    });
     enemy = new Enemy({ scene: this, x: 1470, y: 550, texture: "enemy_walk" });
     walk = true;
   }
-
   //count.
   count_3() {
     player.anims.play("playerStop", true).setVelocityX(0);
@@ -129,10 +153,40 @@ class gameplay extends Phaser.Scene {
       loop: false,
     });
   }
+  //pause menu.
+  inPause() {
+    this.physics.pause();
+    playerTimer.paused = true;
+    enemyTimer.paused = true
+    count_b = this.add.image(680, 384, "count_background");
+    pause = this.add.image(680, 384, "pause");
+    t_pause = this.add.image(683, 272, "pause_text_" + lang);
+    b_resume = this.add
+      .image(685, 372, "b_resume_" + lang)
+      .setInteractive()
+      .on("pointerdown", () => this.outPause());
+    b_help = this.add.image(605, 452, "b_help_2_" + lang);
+    b_main = this.add
+      .image(765, 452, "b_main_" + lang)
+      .setInteractive()
+      .on("pointerdown", () => this.scene.start("main"));
+  }
+  outPause() {
+    count_b.destroy();
+    pause.destroy();
+    t_pause.destroy();
+    b_resume.destroy();
+    b_help.destroy();
+    b_main.destroy();
+    pause = undefined;
+    this.physics.resume();
+    playerTimer.paused = false;
+    enemyTimer.paused = false;
+  }
   update() {
     if (player.x == 200 && walk == true) {
-      player.anims.play("playerStop", true)
-      enemy.anims.play("enemyStop", true)
+      player.anims.play("playerStop", true);
+      enemy.anims.play("enemyStop", true);
       walk = false;
       this.count_3();
     }
