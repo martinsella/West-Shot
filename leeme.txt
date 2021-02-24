@@ -18,10 +18,13 @@ v1.2:
 	* Añadido de botones que indican acciones durante el gameplay.
 
 v1.3:
-	* Cambio de la mecánica principal del juego.
-	* implementación de una barra de vida para cada vaquero.
+	* Implementación de una barra de vida para cada vaquero.
 	* Corrección de bugs.
 
 v1.4:
 	* Implementación del menú de pausa.
 	* Optimización.
+
+v1.5:
+	* Creación de una bala luego de cada disparo.
+	* Corrección de bugs.

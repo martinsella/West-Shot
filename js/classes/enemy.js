@@ -4,7 +4,7 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
     config.scene.add.existing(this);
     config.scene.physics.add.existing(this);
     this.scene.events.on("update", this.update, this);
-    this.setScale(0.7).setSize(300, 350);
+    this.setScale(0.7).setSize(40, 350);
   }
 
   update() {
@@ -12,11 +12,6 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
       enemy.anims.play("enemyLeft", true).setVelocityX(-150);
     } else if (pattern2 < 0.5) {
       enemy.anims.play("enemyShoot", true).setVelocityX(0);
-      if (playerShoot !== true && enemyShoot == false) {
-        playerBar
-          .clear()
-          .fillRect(100, 390, (playerHealth -= 30), 19);
-      }
       enemyShoot = true;
     } else if (pattern2 >= 0.5 && pattern2 <= 1) {
       enemy.anims.play("enemyStop", true).setVelocityX(0);

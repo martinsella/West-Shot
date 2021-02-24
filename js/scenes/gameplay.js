@@ -130,12 +130,7 @@ class gameplay extends Phaser.Scene {
     });
 
     //player and enemy.
-    player = new Player({
-      scene: this,
-      x: -80,
-      y: 550,
-      texture: "player_walk",
-    });
+    player = new Player({ scene: this, x: -80, y: 550, texture: "player_walk" });
     enemy = new Enemy({ scene: this, x: 1470, y: 550, texture: "enemy_walk" });
     walk = true;
   }
@@ -189,6 +184,27 @@ class gameplay extends Phaser.Scene {
       enemy.anims.play("enemyStop", true);
       walk = false;
       this.count_3();
+    }
+    if (player.anims.currentFrame.frame.name == 12 && player.anims.currentAnim.key == "playerShoot") {
+      playerBullet = this.physics.add.image(200, 525, "bullet");
+      playerBullet.setVelocityX(2000);
+      //collider.
+      this.physics.add.overlap(playerBullet, enemy, (playerBullet, enemy) => {
+        playerBullet.destroy();
+        enemyBar
+          .clear()
+          .fillRect(1135, 390, (enemyHealth -= 12.5), 19);
+      }, null, this);
+    } else if (enemy.anims.currentFrame.frame.name == 17 && enemy.anims.currentAnim.key == "enemyShoot") {
+      enemyBullet = this.physics.add.image(1140, 525, "bullet");
+      enemyBullet.setVelocityX(-2000);
+      //collider.
+      this.physics.add.overlap(enemyBullet, player, (enemyBullet, player) => {
+        enemyBullet.destroy();
+        playerBar
+          .clear()
+          .fillRect(100, 390, (playerHealth -= 12.5), 19);
+      }, null, this);
     }
   }
 }

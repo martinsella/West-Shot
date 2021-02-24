@@ -34,20 +34,29 @@ export function count_out() {
   count_b.destroy();
   count.destroy();
   this.physics.resume();
+
   //player and enemy can't out.
   player.setCollideWorldBounds(true);
   enemy.setCollideWorldBounds(true);
+
+  //controls keys.
+  keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+  keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+  keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+  keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+
   //player and enemy health bar.
   playerBar = this.add
     .graphics()
     .clear()
     .fillRect(100, 390, playerHealth, 19)
-    .fillStyle(0x2F933E, 1);
+    .fillStyle(0x2f933e, 1);
   enemyBar = this.add
     .graphics()
     .clear()
     .fillRect(1135, 390, enemyHealth, 19)
-    .fillStyle(0x2F933E, 1);
+    .fillStyle(0x2f933e, 1);
+    
   //player movement.
   playerTimer = this.time.addEvent({
     delay: 3000,

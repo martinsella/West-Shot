@@ -115,7 +115,9 @@ class preloader extends Phaser.Scene {
         frameWidth: 350,
       }
     );
-    
+    //bullet load.
+    this.load.image("bullet", "assets/images/undefined/objects/bullet.png");
+
     //levels load.
     this.load.image("count_background", "assets/images/undefined/levels/count_background.png");
     //level 1.
