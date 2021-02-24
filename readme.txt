@@ -28,3 +28,6 @@ v1.4:
 v1.5:
 	* Creation of a bullet after each shot.
 	* Bugs fixes.
+
+v1.5.1: 
+	* Bugs fixes.

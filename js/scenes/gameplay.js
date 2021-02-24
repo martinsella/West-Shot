@@ -159,11 +159,19 @@ class gameplay extends Phaser.Scene {
     b_resume = this.add
       .image(685, 372, "b_resume_" + lang)
       .setInteractive()
+      .on("pointerover", () => b_resume.setScale(1.1))
+      .on("pointerout", () => b_resume.setScale(1))
       .on("pointerdown", () => this.outPause());
-    b_help = this.add.image(605, 452, "b_help_2_" + lang);
+    b_help = this.add
+      .image(605, 452, "b_help_2_" + lang)
+      .setInteractive()
+      .on("pointerover", () => b_help.setScale(1.1))
+      .on("pointerout", () => b_help.setScale(1));
     b_main = this.add
       .image(765, 452, "b_main_" + lang)
       .setInteractive()
+      .on("pointerover", () => b_main.setScale(1.1))
+      .on("pointerout", () => b_main.setScale(1))
       .on("pointerdown", () => this.scene.start("main"));
   }
   outPause() {

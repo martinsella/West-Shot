@@ -28,3 +28,6 @@ v1.4:
 v1.5:
 	* Creación de una bala luego de cada disparo.
 	* Corrección de bugs.
+
+v1.5.1
+	* Corrección de bugs.

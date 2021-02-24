@@ -83,6 +83,7 @@ export function playerMov() {
 
 export function keyDestroy() {
   b_key.destroy();
+  b_key = undefined;
 }
 
 export default Player;

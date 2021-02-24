@@ -6,7 +6,7 @@ class credits extends Phaser.Scene {
     //menu.
     this.add.image(680, 384, "menus_background");
     this.add.image(680, 384, "credits_chart");
-    this.add.image(700, 370, "cred_text_" + lang);
+    this.add.image(688, 370, "cred_text_" + lang);
 
     //buttons.
     b_back = this.add
