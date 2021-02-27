@@ -34,6 +34,7 @@ export function count_out() {
   count_b.destroy();
   count.destroy();
   this.physics.resume();
+  pause = undefined;
 
   //player and enemy can't out.
   player.setCollideWorldBounds(true);

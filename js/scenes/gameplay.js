@@ -134,6 +134,88 @@ class gameplay extends Phaser.Scene {
     enemy = new Enemy({ scene: this, x: 1470, y: 550, texture: "enemy_walk" });
     walk = true;
   }
+  update() {
+    if (player.x == 200 && walk == true) {
+      player.anims.play("playerStop", true);
+      enemy.anims.play("enemyStop", true);
+      walk = false;
+      this.count_3();
+    }
+    if (player.anims.currentFrame.frame.name == 12 && player.anims.currentAnim.key == "playerShoot") {
+      playerBullet = this.physics.add.image(200, 525, "bullet");
+      playerBullet.setVelocityX(2000);
+      //collider.
+      this.physics.add.overlap(playerBullet, enemy, (playerBullet, enemy) => {
+        playerBullet.destroy();
+        enemyBar
+          .clear()
+          .fillRect(1135, 390, (enemyHealth -= 12.5), 19);
+      }, null, this);
+    } else if (enemy.anims.currentFrame.frame.name == 17 && enemy.anims.currentAnim.key == "enemyShoot") {
+      enemyBullet = this.physics.add.image(1140, 525, "bullet");
+      enemyBullet.setVelocityX(-2000);
+      //collider.
+      this.physics.add.overlap(enemyBullet, player, (enemyBullet, player) => {
+        enemyBullet.destroy();
+        playerBar
+          .clear()
+          .fillRect(100, 390, (playerHealth -= 12.5), 19);
+      }, null, this);
+    }
+    if (enemyHealth == 0 && pause == undefined) {
+      this.physics.pause();
+      playerTimer.paused = true;
+      enemyTimer.paused = true
+      pause = this.add.image(680, 384, "victory_chart");
+      this.add.image(680, 234, "victory_text_1_" + lang);
+      t_pause = this.add.image(680, 334, "victory_text_2_" + lang);
+      b_skip = this.add
+        .image(950, 534, "b_skip")
+        .setInteractive()
+        .on("pointerover", () => b_skip.setScale(1.1))
+        .on("pointerout", () => b_skip.setScale(1))
+        .on("pointerdown", () => {
+          t_pause.destroy();
+          b_next = this.add
+            .image(685, 372, "b_next_" + lang)
+            .setInteractive()
+            .on("pointerover", () => b_next.setScale(1.1))
+            .on("pointerout", () => b_next.setScale(1))
+            .on("pointerdown", () => this.restart());
+          b_main = this.add
+            .image(595, 472, "b_main_" + lang)
+            .setInteractive()
+            .on("pointerover", () => b_main.setScale(1.1))
+            .on("pointerout", () => b_main.setScale(1))
+            .on("pointerdown", () => this.main());
+          b_retry = this.add
+            .image(775, 472, "b_retry_" + lang)
+            .setInteractive()
+            .on("pointerover", () => b_retry.setScale(1.1))
+            .on("pointerout", () => b_retry.setScale(1))
+            .on("pointerdown", () => this.restart());
+      });
+    }
+    if (playerHealth == 0 && pause == undefined) {
+      this.physics.pause();
+      playerTimer.paused = true;
+      enemyTimer.paused = true
+      pause = this.add.image(680, 384, "pause_defeat_chart");
+      this.add.image(680, 284, "defeat_text_" + lang);
+      b_retry = this.add
+        .image(685, 382, "b_retry_" + lang)
+        .setInteractive()
+        .on("pointerover", () => b_retry.setScale(1.1))
+        .on("pointerout", () => b_retry.setScale(1))
+        .on("pointerdown", () => this.restart());
+      b_main = this.add
+        .image(685, 462, "b_main_" + lang)
+        .setInteractive()
+        .on("pointerover", () => b_main.setScale(1.1))
+        .on("pointerout", () => b_main.setScale(1))
+        .on("pointerdown", () => this.main());
+    }
+  }
   //count.
   count_3() {
     player.anims.play("playerStop", true).setVelocityX(0);
@@ -154,7 +236,7 @@ class gameplay extends Phaser.Scene {
     playerTimer.paused = true;
     enemyTimer.paused = true
     count_b = this.add.image(680, 384, "count_background");
-    pause = this.add.image(680, 384, "pause");
+    pause = this.add.image(680, 384, "pause_defeat_chart");
     t_pause = this.add.image(683, 272, "pause_text_" + lang);
     b_resume = this.add
       .image(685, 372, "b_resume_" + lang)
@@ -186,34 +268,21 @@ class gameplay extends Phaser.Scene {
     playerTimer.paused = false;
     enemyTimer.paused = false;
   }
-  update() {
-    if (player.x == 200 && walk == true) {
-      player.anims.play("playerStop", true);
-      enemy.anims.play("enemyStop", true);
-      walk = false;
-      this.count_3();
-    }
-    if (player.anims.currentFrame.frame.name == 12 && player.anims.currentAnim.key == "playerShoot") {
-      playerBullet = this.physics.add.image(200, 525, "bullet");
-      playerBullet.setVelocityX(2000);
-      //collider.
-      this.physics.add.overlap(playerBullet, enemy, (playerBullet, enemy) => {
-        playerBullet.destroy();
-        enemyBar
-          .clear()
-          .fillRect(1135, 390, (enemyHealth -= 12.5), 19);
-      }, null, this);
-    } else if (enemy.anims.currentFrame.frame.name == 17 && enemy.anims.currentAnim.key == "enemyShoot") {
-      enemyBullet = this.physics.add.image(1140, 525, "bullet");
-      enemyBullet.setVelocityX(-2000);
-      //collider.
-      this.physics.add.overlap(enemyBullet, player, (enemyBullet, player) => {
-        enemyBullet.destroy();
-        playerBar
-          .clear()
-          .fillRect(100, 390, (playerHealth -= 12.5), 19);
-      }, null, this);
-    }
+  restart() {
+    this.physics.resume();
+    playerTimer.paused = false;
+    enemyTimer.paused = false;
+    playerHealth = 150;
+    enemyHealth = 150;
+    this.scene.start("gameplay");
+  }
+  main() {
+    this.physics.resume();
+    playerTimer.paused = false;
+    enemyTimer.paused = false;
+    playerHealth = 150;
+    enemyHealth = 150;
+    this.scene.start("main");
   }
 }
 

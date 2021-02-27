@@ -29,5 +29,9 @@ v1.5:
 	* Creación de una bala luego de cada disparo.
 	* Corrección de bugs.
 
-v1.5.1
+v1.5.1:
 	* Corrección de bugs.
+
+v1.6:
+	*Implementación del menú de nivel ganado.
+	*Implementación del menú de nivel perdido.

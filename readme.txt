@@ -31,3 +31,7 @@ v1.5:
 
 v1.5.1: 
 	* Bugs fixes.
+
+v1.6:
+	* Implementation of the earned level menu.
+	* Implementation of the lost level menu.
