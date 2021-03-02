@@ -21,9 +21,34 @@ class selector extends Phaser.Scene {
       .setInteractive()
       .on("pointerover", () => b_1.setScale(1.2))
       .on("pointerout", () => b_1.setScale(1))
-      .on("pointerdown", () => this.scene.start("gameplay"));
+      .on("pointerdown", () => {
+        level = 1;
+        this.scene.start("gameplay");
+      });
 
-    this.add.image(542, 250, "b_block");
+    //level 2.
+    b_2 = this.add
+      .image(542, 250, "b_block")
+      .setInteractive()
+      .on("pointerover", () => {
+        if (lastWin == 1) {
+          b_2.setScale(1.2)
+        }
+      })
+      .on("pointerout", () => {
+        if (lastWin == 1) {
+          b_2.setScale(1);
+        }      
+      })
+      .on("pointerdown", () => {
+        if (lastWin == 1) {
+          level = 2;
+          this.scene.start("gameplay");
+        }
+      });
+    if (lastWin == 1) {
+      b_2.setTexture("b_2");
+    }
     this.add.image(683, 250, "b_block");
     this.add.image(824, 250, "b_block");
     this.add.image(965, 250, "b_block");

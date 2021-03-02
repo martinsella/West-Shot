@@ -35,3 +35,9 @@ v1.5.1:
 v1.6:
 	* Implementation of the earned level menu.
 	* Implementation of the lost level menu.
+
+v1.7:
+	* Implementation of a preload screen.
+	* Implementation of the first enemy.
+	* Implementation of level 2.
+	* Optimizations referred to some assets.

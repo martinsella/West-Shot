@@ -33,5 +33,11 @@ v1.5.1:
 	* Corrección de bugs.
 
 v1.6:
-	*Implementación del menú de nivel ganado.
-	*Implementación del menú de nivel perdido.
+	* Implementación del menú de nivel ganado.
+	* Implementación del menú de nivel perdido.
+
+v1.7:
+	* Implementación de una pantalla de precarga.
+	* Implementación del primer enemigo.
+	* Implementación del nivel 2.
+	* Optimizaciones referidas a algunos assets.

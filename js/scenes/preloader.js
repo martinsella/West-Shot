@@ -4,6 +4,17 @@ class preloader extends Phaser.Scene {
   }
 
   preload() {
+    //loading bar.
+    this.graphics = this.add.graphics();
+		this.newGraphics = this.add.graphics();
+		var progressBar = new Phaser.Geom.Rectangle(200, 200, 400, 50);
+		var progressBarFill = new Phaser.Geom.Rectangle(205, 205, 290, 40);
+		this.graphics.fillStyle(0xffffff, 1);
+		this.graphics.fillRectShape(progressBar);
+		this.newGraphics.fillStyle(0xF56509, 1);
+		this.newGraphics.fillRectShape(progressBarFill);
+		var loadingText = this.add.text(335,260,"Loading: ", { fontSize: '32px', fill: '#FFF' });
+
     //menus load.
     this.load.image("main_background", "assets/images/undefined/menus/main_background.png");
     this.load.image("menus_background", "assets/images/undefined/menus/menus_background.png");
@@ -38,6 +49,15 @@ class preloader extends Phaser.Scene {
     this.load.image("b_back_over", "assets/images/undefined/buttons/b_back_over.png");
     this.load.image("b_skip", "assets/images/undefined/buttons/b_skip.png");
     this.load.image("b_1", "assets/images/undefined/buttons/b_1.png");
+    this.load.image("b_2", "assets/images/undefined/buttons/b_2.png");
+    this.load.image("b_3", "assets/images/undefined/buttons/b_3.png");
+    this.load.image("b_4", "assets/images/undefined/buttons/b_4.png");
+    this.load.image("b_5", "assets/images/undefined/buttons/b_5.png");
+    this.load.image("b_6", "assets/images/undefined/buttons/b_6.png");
+    this.load.image("b_7", "assets/images/undefined/buttons/b_7.png");
+    this.load.image("b_8", "assets/images/undefined/buttons/b_8.png");
+    this.load.image("b_9", "assets/images/undefined/buttons/b_9.png");
+    this.load.image("b_10", "assets/images/undefined/buttons/b_10.png");
     this.load.image("b_block", "assets/images/undefined/buttons/b_block.png");
     this.load.image("b_w", "assets/images/undefined/buttons/b_w.png");
     this.load.image("b_w_false", "assets/images/undefined/buttons/b_w_false.png");
@@ -106,27 +126,28 @@ class preloader extends Phaser.Scene {
     this.load.spritesheet("player_walk","assets/images/undefined/objects/player_walk.png",
       {
         frameHeight: 380,
-        frameWidth: 350,
+        frameWidth: 290,
       }
     );
     this.load.spritesheet("player_shoot","assets/images/undefined/objects/player_shoot.png",
       {
         frameHeight: 380,
-        frameWidth: 350,
+        frameWidth: 290,
       }
     );
     this.load.spritesheet("enemy_walk","assets/images/undefined/objects/enemy_walk.png",
       {
         frameHeight: 379,
-        frameWidth: 350,
+        frameWidth: 290,
       }
     );
     this.load.spritesheet("enemy_shoot","assets/images/undefined/objects/enemy_shoot.png",
       {
         frameHeight: 380,
-        frameWidth: 350,
+        frameWidth: 290,
       }
     );
+
     //bullet load.
     this.load.image("bullet", "assets/images/undefined/objects/bullet.png");
 
@@ -138,8 +159,24 @@ class preloader extends Phaser.Scene {
     this.load.image("level_1_cloud_2", "assets/images/undefined/levels/level_1_cloud_2.png");
     this.load.image("level_1_building", "assets/images/undefined/levels/level_1_building.png");
     this.load.image("level_1_mountains", "assets/images/undefined/levels/level_1_mountains.png");
+    //level 2.
+    this.load.image("level_2", "assets/images/undefined/levels/level_2.png");
+    
+    //loading bar.
+		for(var i =0;i<30;i++) {
+    this.load.on('progress', this.updateBar, {newGraphics:this.newGraphics,loadingText:loadingText});
+    }
   }
-  create() {
+
+  //update loading bar.
+  updateBar(percentage) {
+    this.newGraphics.clear();
+    this.newGraphics.fillStyle(0xF56509, 1);
+    this.newGraphics.fillRectShape(new Phaser.Geom.Rectangle(205, 205, percentage*390, 40));
+    percentage = percentage * 100;
+    this.loadingText.setText(percentage.toFixed(2) + "%");
+	}
+	create() {
     this.scene.start("language");
   }
 }

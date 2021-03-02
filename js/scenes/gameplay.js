@@ -9,12 +9,16 @@ class gameplay extends Phaser.Scene {
 
   create() {
     //level 1.
-    this.add.image(680, 384, "level_1_sky");
-    this.physics.add.image(1480, 74, "level_1_cloud_1").setVelocityX(-20);
-    this.physics.add.image(1780, 164, "level_1_cloud_2").setVelocityX(-20);
-    this.add.image(680, 456, "level_1_mountains");
-    this.add.image(680, 301, "level_1_building");
-
+    if (level == 1 || level !== 2) {
+      this.add.image(680, 384, "level_1_sky");
+      this.physics.add.image(1480, 74, "level_1_cloud_1").setVelocityX(-20);
+      this.physics.add.image(1780, 164, "level_1_cloud_2").setVelocityX(-20);
+      this.add.image(680, 456, "level_1_mountains");
+      this.add.image(680, 301, "level_1_building");
+    } else if (level == 2) {
+      this.add.image(680, 384, "level_2");
+    }
+    
     //buttons.
     b_music = this.add
       .image(1180, 30, "b_music_on")
@@ -181,7 +185,11 @@ class gameplay extends Phaser.Scene {
             .setInteractive()
             .on("pointerover", () => b_next.setScale(1.1))
             .on("pointerout", () => b_next.setScale(1))
-            .on("pointerdown", () => this.restart());
+            .on("pointerdown", () => {
+              level += 1;
+              lastWin += 1;
+              this.restart();
+            });
           b_main = this.add
             .image(595, 472, "b_main_" + lang)
             .setInteractive()
@@ -193,7 +201,12 @@ class gameplay extends Phaser.Scene {
             .setInteractive()
             .on("pointerover", () => b_retry.setScale(1.1))
             .on("pointerout", () => b_retry.setScale(1))
-            .on("pointerdown", () => this.restart());
+            .on("pointerdown", () => {
+              if (level > lastWin) {
+                lastWin += 1;
+              }
+              this.restart();
+            });
       });
     }
     if (playerHealth == 0 && pause == undefined) {
