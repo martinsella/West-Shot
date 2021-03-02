@@ -7,13 +7,13 @@ class preloader extends Phaser.Scene {
     //loading bar.
     this.graphics = this.add.graphics();
 		this.newGraphics = this.add.graphics();
-		var progressBar = new Phaser.Geom.Rectangle(200, 200, 400, 50);
-		var progressBarFill = new Phaser.Geom.Rectangle(205, 205, 290, 40);
+		var progressBar = new Phaser.Geom.Rectangle(490, 304, 400, 50);
+		var progressBarFill = new Phaser.Geom.Rectangle(495, 309, 290, 40);
 		this.graphics.fillStyle(0xffffff, 1);
 		this.graphics.fillRectShape(progressBar);
 		this.newGraphics.fillStyle(0xF56509, 1);
 		this.newGraphics.fillRectShape(progressBarFill);
-		var loadingText = this.add.text(335,260,"Loading: ", { fontSize: '32px', fill: '#FFF' });
+		var loadingText = this.add.text(625,379,"100%", { fontSize: '32px', fill: '#FFF' });
 
     //menus load.
     this.load.image("main_background", "assets/images/undefined/menus/main_background.png");
@@ -160,7 +160,10 @@ class preloader extends Phaser.Scene {
     this.load.image("level_1_building", "assets/images/undefined/levels/level_1_building.png");
     this.load.image("level_1_mountains", "assets/images/undefined/levels/level_1_mountains.png");
     //level 2.
-    this.load.image("level_2", "assets/images/undefined/levels/level_2.png");
+    this.load.image("level_2_sky", "assets/images/undefined/levels/level_2_sky.png");
+    this.load.image("level_2_cloud_1", "assets/images/undefined/levels/level_2_cloud_1.png");
+    this.load.image("level_2_cloud_2", "assets/images/undefined/levels/level_2_cloud_2.png");
+    this.load.image("level_2_mountains", "assets/images/undefined/levels/level_2_mountains.png");
     
     //loading bar.
 		for(var i =0;i<30;i++) {
@@ -172,7 +175,7 @@ class preloader extends Phaser.Scene {
   updateBar(percentage) {
     this.newGraphics.clear();
     this.newGraphics.fillStyle(0xF56509, 1);
-    this.newGraphics.fillRectShape(new Phaser.Geom.Rectangle(205, 205, percentage*390, 40));
+    this.newGraphics.fillRectShape(new Phaser.Geom.Rectangle(495, 309, percentage*390, 40));
     percentage = percentage * 100;
     this.loadingText.setText(percentage.toFixed(2) + "%");
 	}

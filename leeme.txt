@@ -41,3 +41,7 @@ v1.7:
 	* Implementación del primer enemigo.
 	* Implementación del nivel 2.
 	* Optimizaciones referidas a algunos assets.
+
+v1.7.1:
+	* Cambios con respecto al nivel de dificultad.
+	* Cambios con respecto al nivel 2.

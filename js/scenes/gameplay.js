@@ -9,14 +9,20 @@ class gameplay extends Phaser.Scene {
 
   create() {
     //level 1.
-    if (level == 1 || level !== 2) {
+    if (level == 1) {
+      difficulty = 0.20;
       this.add.image(680, 384, "level_1_sky");
       this.physics.add.image(1480, 74, "level_1_cloud_1").setVelocityX(-20);
       this.physics.add.image(1780, 164, "level_1_cloud_2").setVelocityX(-20);
       this.add.image(680, 456, "level_1_mountains");
       this.add.image(680, 301, "level_1_building");
-    } else if (level == 2) {
+    } else if (level >= 2) {
+      difficulty = 0.25;
       this.add.image(680, 384, "level_2");
+      this.add.image(680, 177, "level_2_sky");
+      this.physics.add.image(1610, 74, "level_2_cloud_1").setVelocityX(-20);
+      this.physics.add.image(1910, 164, "level_2_cloud_2").setVelocityX(-20);
+      this.add.image(680, 456, "level_2_mountains");
     }
     
     //buttons.
