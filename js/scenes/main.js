@@ -20,7 +20,8 @@ class main extends Phaser.Scene {
       .image(1081, 335, "b_collection_" + lang)
       .setInteractive()
       .on("pointerover", () => b_collection.setTexture("b_collection_over_" + lang))
-      .on("pointerout", () => b_collection.setTexture("b_collection_" + lang));
+      .on("pointerout", () => b_collection.setTexture("b_collection_" + lang))
+      .on("pointerdown", () => this.scene.start("collection"));
 
     b_help = this.add
       .image(1084, 446, "b_help_" + lang)

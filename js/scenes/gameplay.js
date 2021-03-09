@@ -201,7 +201,12 @@ class gameplay extends Phaser.Scene {
             .setInteractive()
             .on("pointerover", () => b_main.setScale(1.1))
             .on("pointerout", () => b_main.setScale(1))
-            .on("pointerdown", () => this.main());
+            .on("pointerdown", () => {
+              if (level > lastWin) {
+                lastWin += 1;
+              }
+              this.main();
+            });
           b_retry = this.add
             .image(775, 472, "b_retry_" + lang)
             .setInteractive()

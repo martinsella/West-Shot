@@ -31,22 +31,22 @@ class selector extends Phaser.Scene {
       .image(542, 250, "b_block")
       .setInteractive()
       .on("pointerover", () => {
-        if (lastWin == 1) {
+        if (lastWin >= 1) {
           b_2.setScale(1.2)
         }
       })
       .on("pointerout", () => {
-        if (lastWin == 1) {
+        if (lastWin >= 1) {
           b_2.setScale(1);
         }      
       })
       .on("pointerdown", () => {
-        if (lastWin == 1) {
+        if (lastWin >= 1) {
           level = 2;
           this.scene.start("gameplay");
         }
       });
-    if (lastWin == 1) {
+    if (lastWin >= 1) {
       b_2.setTexture("b_2");
     }
     this.add.image(683, 250, "b_block");

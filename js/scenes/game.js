@@ -2,6 +2,7 @@ import preloader from "./preloader.js";
 import main from "./main.js";
 import language from "./language.js";
 import credits from "./credits.js";
+import collection from "./collection.js";
 import selector from "./selector.js";
 import gameplay from "./gameplay.js";
 
@@ -21,7 +22,7 @@ var config = {
       debug: false,
     },
   },
-  scene: [preloader, language, main, credits, selector, gameplay],
+  scene: [preloader, language, main, credits, collection, selector, gameplay],
 };
 
 //most important variable.

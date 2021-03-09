@@ -21,6 +21,7 @@ class preloader extends Phaser.Scene {
     this.load.image("main_title", "assets/images/undefined/menus/main_title.png");
     this.load.image("language", "assets/images/undefined/menus/language.png");
     this.load.image("credits_chart", "assets/images/undefined/menus/credits_chart.png");
+    this.load.image("collection", "assets/images/undefined/menus/collection.png");
     this.load.image("selector_chart", "assets/images/undefined/menus/selector_chart.png");
     this.load.image("pause_defeat_chart", "assets/images/undefined/menus/pause_defeat_chart.png");
     this.load.image("victory_chart", "assets/images/undefined/menus/victory_chart.png");
@@ -122,7 +123,8 @@ class preloader extends Phaser.Scene {
     this.load.image("victory_text_2_es", "assets/images/spanish/texts/victory_text_2_es.png");
     this.load.image("defeat_text_es", "assets/images/spanish/texts/defeat_text_es.png");
 
-    //players load.
+    //players and objects load.
+    //undefined.
     this.load.spritesheet("player_walk","assets/images/undefined/objects/player_walk.png",
       {
         frameHeight: 380,
@@ -147,9 +149,13 @@ class preloader extends Phaser.Scene {
         frameWidth: 290,
       }
     );
-
-    //bullet load.
     this.load.image("bullet", "assets/images/undefined/objects/bullet.png");
+    //english.
+    this.load.image("hat_1_en", "assets/images/english/objects/hat_1_en.png");
+    this.load.image("hat_2_en", "assets/images/english/objects/hat_2_en.png");
+    //spanish.
+    this.load.image("hat_1_es", "assets/images/spanish/objects/hat_1_es.png");
+    this.load.image("hat_2_es", "assets/images/spanish/objects/hat_2_es.png");
 
     //levels load.
     this.load.image("count_background", "assets/images/undefined/levels/count_background.png");

@@ -45,3 +45,7 @@ v1.7:
 v1.7.1:
 	* Cambios con respecto al nivel de dificultad.
 	* Cambios con respecto al nivel 2.
+
+v1.8:
+	* Implementación del menú colección.
+	* Corrección de un bug relacionado al desbloqueo de niveles.
