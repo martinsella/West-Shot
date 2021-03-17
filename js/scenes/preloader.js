@@ -137,19 +137,51 @@ class preloader extends Phaser.Scene {
         frameWidth: 290,
       }
     );
-    this.load.spritesheet("enemy_walk","assets/images/undefined/objects/enemy_walk.png",
+    this.load.spritesheet("player_death","assets/images/undefined/objects/player_death.png",
       {
-        frameHeight: 379,
-        frameWidth: 290,
+        frameHeight: 380,
+        frameWidth: 410,
       }
     );
-    this.load.spritesheet("enemy_shoot","assets/images/undefined/objects/enemy_shoot.png",
+    this.load.spritesheet("enemy_1_walk","assets/images/undefined/objects/enemy_1_walk.png",
       {
         frameHeight: 380,
         frameWidth: 290,
       }
     );
+    this.load.spritesheet("enemy_1_shoot","assets/images/undefined/objects/enemy_1_shoot.png",
+      {
+        frameHeight: 380,
+        frameWidth: 290,
+      }
+    );
+    this.load.spritesheet("enemy_1_death","assets/images/undefined/objects/enemy_1_death.png",
+      {
+        frameHeight: 380,
+        frameWidth: 410,
+      }
+    );
+    this.load.spritesheet("enemy_2_walk","assets/images/undefined/objects/enemy_2_walk.png",
+      {
+        frameHeight: 380,
+        frameWidth: 290,
+      }
+    );
+    this.load.spritesheet("enemy_2_shoot","assets/images/undefined/objects/enemy_2_shoot.png",
+      {
+        frameHeight: 379,
+        frameWidth: 290,
+      }
+    );
+    this.load.spritesheet("enemy_2_death","assets/images/undefined/objects/enemy_2_death.png",
+      {
+        frameHeight: 380,
+        frameWidth: 410,
+      }
+    );
     this.load.image("bullet", "assets/images/undefined/objects/bullet.png");
+    this.load.image("enemy_1_hat", "assets/images/undefined/objects/enemy_1_hat.png");
+    this.load.image("enemy_2_hat", "assets/images/undefined/objects/enemy_2_hat.png");
     //english.
     this.load.image("hat_1_en", "assets/images/english/objects/hat_1_en.png");
     this.load.image("hat_2_en", "assets/images/english/objects/hat_2_en.png");

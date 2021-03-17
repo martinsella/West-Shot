@@ -49,3 +49,9 @@ v1.7.1:
 v1.8:
 	* Implementation of the collection menu.
 	* Correction of a bug related to unlocking levels.
+
+v1.9:
+	* Implementation of the second enemy.
+	* Implementation of player animation: death.
+	* Animation implementation of enemy 1: death.
+	* Animation implementation of enemy 2: death.

@@ -49,3 +49,9 @@ v1.7.1:
 v1.8:
 	* Implementación del menú colección.
 	* Corrección de un bug relacionado al desbloqueo de niveles.
+
+v1.9:
+	* Implementación del segundo enemigo.
+	* Implementación de animación del jugador: muerte.
+	* Implementación de animación del enemigo 1: muerte.
+	* Implementación de animación del enemigo 2: muerte.

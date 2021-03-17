@@ -112,11 +112,26 @@ class gameplay extends Phaser.Scene {
       frameRate: 35,
       repeat: 0,
     });
+    this.anims.create({
+      key: "playerDeath",
+      frames: this.anims.generateFrameNumbers("player_death", {
+        start: 0,
+        end: 12,
+      }),
+      frameRate: 30,
+      repeat: 0,
+    });
+    this.anims.create({
+      key: "playerDead",
+      frames: [{ key: "player_death", frame: 12 }],
+      frameRate: 30,
+      repeat: -1,
+    });
 
     //enemy anims.
     this.anims.create({
-      key: "enemyLeft",
-      frames: this.anims.generateFrameNumbers("enemy_walk", {
+      key: "enemy_" + level + "_Left",
+      frames: this.anims.generateFrameNumbers("enemy_" + level + "_walk", {
         start: 13,
         end: 0,
       }),
@@ -124,30 +139,45 @@ class gameplay extends Phaser.Scene {
       repeat: -1,
     });
     this.anims.create({
-      key: "enemyStop",
-      frames: [{ key: "enemy_walk", frame: 1 }],
+      key: "enemy_" + level + "_Stop",
+      frames: [{ key: "enemy_" + level + "_walk", frame: 1 }],
       frameRate: 30,
       repeat: -1,
     });
     this.anims.create({
-      key: "enemyShoot",
-      frames: this.anims.generateFrameNumbers("enemy_shoot", {
+      key: "enemy_" + level + "_Shoot",
+      frames: this.anims.generateFrameNumbers("enemy_" + level + "_shoot", {
         start: 29,
         end: 0,
       }),
       frameRate: 35,
       repeat: 0,
     });
+    this.anims.create({
+      key: "enemy_" + level + "_Death",
+      frames: this.anims.generateFrameNumbers("enemy_" + level + "_death", {
+        start: 13,
+        end: 0,
+      }),
+      frameRate: 30,
+      repeat: 0,
+    });
+    this.anims.create({
+      key: "enemy_" + level + "_Dead",
+      frames: [{ key: "enemy_" + level + "_death", frame: 0 }],
+      frameRate: 30,
+      repeat: -1,
+    });
 
     //player and enemy.
     player = new Player({ scene: this, x: -80, y: 550, texture: "player_walk" });
-    enemy = new Enemy({ scene: this, x: 1470, y: 550, texture: "enemy_walk" });
+    enemy = new Enemy({ scene: this, x: 1470, y: 550, texture: "enemy_" + level + "_walk" });
     walk = true;
   }
   update() {
     if (player.x == 200 && walk == true) {
       player.anims.play("playerStop", true);
-      enemy.anims.play("enemyStop", true);
+      enemy.anims.play("enemy_" + level + "_Stop", true);
       walk = false;
       this.count_3();
     }
@@ -161,7 +191,7 @@ class gameplay extends Phaser.Scene {
           .clear()
           .fillRect(1135, 390, (enemyHealth -= 12.5), 19);
       }, null, this);
-    } else if (enemy.anims.currentFrame.frame.name == 17 && enemy.anims.currentAnim.key == "enemyShoot") {
+    } else if (enemy.anims.currentFrame.frame.name == 17 && enemy.anims.currentAnim.key == "enemy_" + level + "_Shoot") {
       enemyBullet = this.physics.add.image(1140, 525, "bullet");
       enemyBullet.setVelocityX(-2000);
       //collider.
@@ -173,77 +203,113 @@ class gameplay extends Phaser.Scene {
       }, null, this);
     }
     if (enemyHealth == 0 && pause == undefined) {
-      this.physics.pause();
       playerTimer.paused = true;
-      enemyTimer.paused = true
-      pause = this.add.image(680, 384, "victory_chart");
-      this.add.image(680, 234, "victory_text_1_" + lang);
-      t_pause = this.add.image(680, 334, "victory_text_2_" + lang);
-      b_skip = this.add
-        .image(950, 534, "b_skip")
-        .setInteractive()
-        .on("pointerover", () => b_skip.setScale(1.1))
-        .on("pointerout", () => b_skip.setScale(1))
-        .on("pointerdown", () => {
-          t_pause.destroy();
-          b_next = this.add
-            .image(685, 372, "b_next_" + lang)
-            .setInteractive()
-            .on("pointerover", () => b_next.setScale(1.1))
-            .on("pointerout", () => b_next.setScale(1))
-            .on("pointerdown", () => {
-              level += 1;
-              lastWin += 1;
-              this.restart();
-            });
-          b_main = this.add
-            .image(595, 472, "b_main_" + lang)
-            .setInteractive()
-            .on("pointerover", () => b_main.setScale(1.1))
-            .on("pointerout", () => b_main.setScale(1))
-            .on("pointerdown", () => {
-              if (level > lastWin) {
-                lastWin += 1;
-              }
-              this.main();
-            });
-          b_retry = this.add
-            .image(775, 472, "b_retry_" + lang)
-            .setInteractive()
-            .on("pointerover", () => b_retry.setScale(1.1))
-            .on("pointerout", () => b_retry.setScale(1))
-            .on("pointerdown", () => {
-              if (level > lastWin) {
-                lastWin += 1;
-              }
-              this.restart();
-            });
-      });
+      enemyTimer.paused = true;
+      if (enemy.anims.currentFrame.frame.name == 1 && enemy.anims.currentAnim.key == "enemy_" + level + "_Death") {
+        dead = true;
+      } else {
+        enemy.anims.play("enemy_" + level + "_Death", true);
+      }
+      if (dead == true) {
+        enemy.anims.play("enemy_" + level + "_Dead", true);
+        playerBar.destroy();
+        walk = true;
+        if (hat == undefined) {
+          hat = this.physics.add
+            .image(1115, 650, "enemy_" + level + "_hat")
+            .setScale(0.70);
+        }
+      }
+      this.physics.add.overlap(player, hat, ()=> {
+        hat.destroy();
+        dead = undefined;
+        walk = false;
+        this.physics.pause();
+        pause = this.add.image(680, 384, "victory_chart");
+        this.add.image(680, 234, "victory_text_1_" + lang);
+        t_pause = this.add.image(680, 334, "victory_text_2_" + lang);
+        hat = this.add.image(680, 454, "hat_" + level + "_" + lang)
+        b_skip = this.add
+          .image(950, 534, "b_skip")
+          .setInteractive()
+          .on("pointerover", () => b_skip.setScale(1.1))
+          .on("pointerout", () => b_skip.setScale(1))
+          .on("pointerdown", () => {
+            hat.destroy();
+            hat = undefined;
+            t_pause.destroy();
+            b_next = this.add
+              .image(685, 372, "b_next_" + lang)
+              .setInteractive()
+              .on("pointerover", () => b_next.setScale(1.1))
+              .on("pointerout", () => b_next.setScale(1))
+              .on("pointerdown", () => {
+                if (level < 2) {
+                  level += 1;
+                  lastWin += 1;
+                }
+                this.restart();
+              });
+            b_main = this.add
+              .image(595, 472, "b_main_" + lang)
+              .setInteractive()
+              .on("pointerover", () => b_main.setScale(1.1))
+              .on("pointerout", () => b_main.setScale(1))
+              .on("pointerdown", () => {
+                if (level > lastWin) {
+                  lastWin += 1;
+                }
+                this.main();
+              });
+            b_retry = this.add
+              .image(775, 472, "b_retry_" + lang)
+              .setInteractive()
+              .on("pointerover", () => b_retry.setScale(1.1))
+              .on("pointerout", () => b_retry.setScale(1))
+              .on("pointerdown", () => {
+                if (level > lastWin) {
+                  lastWin += 1;
+                }
+                this.restart();
+              });
+          });
+      })
     }
     if (playerHealth == 0 && pause == undefined) {
-      this.physics.pause();
       playerTimer.paused = true;
       enemyTimer.paused = true
-      pause = this.add.image(680, 384, "pause_defeat_chart");
-      this.add.image(680, 284, "defeat_text_" + lang);
-      b_retry = this.add
-        .image(685, 382, "b_retry_" + lang)
-        .setInteractive()
-        .on("pointerover", () => b_retry.setScale(1.1))
-        .on("pointerout", () => b_retry.setScale(1))
-        .on("pointerdown", () => this.restart());
-      b_main = this.add
-        .image(685, 462, "b_main_" + lang)
-        .setInteractive()
-        .on("pointerover", () => b_main.setScale(1.1))
-        .on("pointerout", () => b_main.setScale(1))
-        .on("pointerdown", () => this.main());
+      if (player.anims.currentFrame.frame.name == 11 && player.anims.currentAnim.key == "playerDeath") {
+        dead = true;
+      } else {
+        player.anims.play("playerDeath", true);
+      }
+      if (dead == true) {
+        player.anims.play("playerDead", true);
+        this.physics.pause();
+        dead = undefined;
+        playerTimer.paused = true;
+        enemyTimer.paused = true
+        pause = this.add.image(680, 384, "pause_defeat_chart");
+        this.add.image(680, 284, "defeat_text_" + lang);
+        b_retry = this.add
+          .image(685, 382, "b_retry_" + lang)
+          .setInteractive()
+          .on("pointerover", () => b_retry.setScale(1.1))
+          .on("pointerout", () => b_retry.setScale(1))
+          .on("pointerdown", () => this.restart());
+        b_main = this.add
+          .image(685, 462, "b_main_" + lang)
+          .setInteractive()
+          .on("pointerover", () => b_main.setScale(1.1))
+          .on("pointerout", () => b_main.setScale(1))
+          .on("pointerdown", () => this.main());
+      }
     }
   }
   //count.
   count_3() {
     player.anims.play("playerStop", true).setVelocityX(0);
-    enemy.anims.play("enemyStop", true).setVelocityX(0);
+    enemy.anims.play("enemy_" + level + "_Stop", true).setVelocityX(0);
     this.physics.pause();
     count_b = this.add.image(680, 384, "count_background");
     count = this.add.image(680, 384, "count_fire_3");

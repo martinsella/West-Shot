@@ -12,7 +12,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
       player.anims.play("playerRight", true).setVelocityX(150);
     } else if (walk == false && playerShoot == true) {
       player.anims.play("playerShoot", true);
-    } else {
+    } else if (playerHealth !== 0) {
       player.anims.play("playerStop", true).setVelocityX(0);
     }
     if (player.anims.currentFrame.frame.name == 29 && player.anims.currentAnim.key == "playerShoot") {
