@@ -55,3 +55,9 @@ v1.9:
 	* Implementación de animación del jugador: muerte.
 	* Implementación de animación del enemigo 1: muerte.
 	* Implementación de animación del enemigo 2: muerte.
+
+v2.0:
+	* Implementación de la pantalla de inicio.
+	* Añadidos efectos de transición al menú principal. 
+	* Cambios en el gameplay una vez ganado un nivel.
+	* Corrección de bugs.

@@ -15,7 +15,7 @@ class language extends Phaser.Scene {
       .on("pointerout", () => b_es.setTexture("b_es"))
       .on("pointerdown", () => {
         lang = "es";
-        this.scene.start("main");
+        this.scene.start("start");
       });
 
     b_en = this.add
@@ -25,9 +25,22 @@ class language extends Phaser.Scene {
       .on("pointerout", () => b_en.setTexture("b_en"))
       .on("pointerdown", () => {
         lang = "en";
-        this.scene.start("main");
+        this.scene.start("start");
       });
+
+    b_full = this.add
+      .image(1330, 30, "b_full")
+      .setInteractive()
+      .on("pointerover", () => b_full.setTexture("b_full_over"))
+      .on("pointerout", () => b_full.setTexture("b_full"))
+      .on("pointerdown", () => {
+        if (this.scale.isFullscreen) {
+          this.scale.stopFullscreen();
+        } else {
+          this.scale.startFullscreen();
+        }
+      });
+    }
   }
-}
 
 export default language;

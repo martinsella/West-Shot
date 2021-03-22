@@ -18,7 +18,9 @@ class preloader extends Phaser.Scene {
     //menus load.
     this.load.image("main_background", "assets/images/undefined/menus/main_background.png");
     this.load.image("menus_background", "assets/images/undefined/menus/menus_background.png");
+    this.load.image("main_mountains", "assets/images/undefined/menus/main_mountains.png");
     this.load.image("main_title", "assets/images/undefined/menus/main_title.png");
+    this.load.image("main_stick", "assets/images/undefined/menus/main_stick.png");
     this.load.image("language", "assets/images/undefined/menus/language.png");
     this.load.image("credits_chart", "assets/images/undefined/menus/credits_chart.png");
     this.load.image("collection", "assets/images/undefined/menus/collection.png");
@@ -109,6 +111,7 @@ class preloader extends Phaser.Scene {
     this.load.image("count_fire_2", "assets/images/undefined/levels/count_fire_2.png");
     this.load.image("count_fire_3", "assets/images/undefined/levels/count_fire_3.png");
     //english.
+    this.load.image("start_text_en", "assets/images/english/texts/start_text_en.png");
     this.load.image("cred_text_en", "assets/images/english/texts/cred_text_en.png");
     this.load.image("count_fire_en", "assets/images/english/texts/count_fire_en.png");
     this.load.image("pause_text_en", "assets/images/english/texts/pause_text_en.png");
@@ -116,6 +119,7 @@ class preloader extends Phaser.Scene {
     this.load.image("victory_text_2_en", "assets/images/english/texts/victory_text_2_en.png");
     this.load.image("defeat_text_en", "assets/images/english/texts/defeat_text_en.png");
     //spanish.
+    this.load.image("start_text_es", "assets/images/spanish/texts/start_text_es.png");
     this.load.image("cred_text_es", "assets/images/spanish/texts/cred_text_es.png");
     this.load.image("count_fire_es", "assets/images/spanish/texts/count_fire_es.png");
     this.load.image("pause_text_es", "assets/images/spanish/texts/pause_text_es.png");
@@ -125,6 +129,12 @@ class preloader extends Phaser.Scene {
 
     //players and objects load.
     //undefined.
+    this.load.spritesheet("main_walk","assets/images/undefined/menus/main_walk.png",
+      {
+        frameHeight: 149,
+        frameWidth: 89,
+      }
+    );
     this.load.spritesheet("player_walk","assets/images/undefined/objects/player_walk.png",
       {
         frameHeight: 380,

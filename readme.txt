@@ -19,7 +19,7 @@ v1.2:
 
 v1.3:
 	* Implementation of a life bar for each cowboy.
-	* Bugs fixes.
+	* Bug fixes.
 
 v1.4:
 	* Implementation of the pause menu.
@@ -27,10 +27,10 @@ v1.4:
 
 v1.5:
 	* Creation of a bullet after each shot.
-	* Bugs fixes.
+	* Bug fixes.
 
 v1.5.1: 
-	* Bugs fixes.
+	* Bug fixes.
 
 v1.6:
 	* Implementation of the earned level menu.
@@ -55,3 +55,9 @@ v1.9:
 	* Implementation of player animation: death.
 	* Animation implementation of enemy 1: death.
 	* Animation implementation of enemy 2: death.
+
+v2.0:
+	* Implementation of the home screen.
+	* Added transition effects to the main menu.
+	* Changes in the gameplay once a level has been won.
+	* Bug fixes.

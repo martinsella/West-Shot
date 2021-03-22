@@ -187,6 +187,7 @@ class gameplay extends Phaser.Scene {
       //collider.
       this.physics.add.overlap(playerBullet, enemy, (playerBullet, enemy) => {
         playerBullet.destroy();
+        playerBullet = undefined;
         enemyBar
           .clear()
           .fillRect(1135, 390, (enemyHealth -= 12.5), 19);
@@ -197,6 +198,7 @@ class gameplay extends Phaser.Scene {
       //collider.
       this.physics.add.overlap(enemyBullet, player, (enemyBullet, player) => {
         enemyBullet.destroy();
+        enemyBullet = undefined;
         playerBar
           .clear()
           .fillRect(100, 390, (playerHealth -= 12.5), 19);
@@ -205,6 +207,14 @@ class gameplay extends Phaser.Scene {
     if (enemyHealth == 0 && pause == undefined) {
       playerTimer.paused = true;
       enemyTimer.paused = true;
+      if (playerBullet !== undefined) {
+        playerBullet.destroy();
+        playerBullet = undefined;
+      }
+      if (enemyBullet !== undefined) {
+        enemyBullet.destroy();
+        enemyBullet = undefined;
+      }
       if (enemy.anims.currentFrame.frame.name == 1 && enemy.anims.currentAnim.key == "enemy_" + level + "_Death") {
         dead = true;
       } else {
@@ -212,18 +222,22 @@ class gameplay extends Phaser.Scene {
       }
       if (dead == true) {
         enemy.anims.play("enemy_" + level + "_Dead", true);
-        playerBar.destroy();
-        walk = true;
         if (hat == undefined) {
           hat = this.physics.add
             .image(1115, 650, "enemy_" + level + "_hat")
-            .setScale(0.70);
+            .setScale(0.70)
+            .setInteractive()
+            .on("pointerdown", ()=> {
+              playerBar.destroy();
+              walk = true;
+            })
         }
       }
       this.physics.add.overlap(player, hat, ()=> {
         hat.destroy();
         dead = undefined;
         walk = false;
+        enemyHealth = 150;
         this.physics.pause();
         pause = this.add.image(680, 384, "victory_chart");
         this.add.image(680, 234, "victory_text_1_" + lang);
@@ -238,6 +252,7 @@ class gameplay extends Phaser.Scene {
             hat.destroy();
             hat = undefined;
             t_pause.destroy();
+            b_skip.destroy();
             b_next = this.add
               .image(685, 372, "b_next_" + lang)
               .setInteractive()
@@ -277,7 +292,10 @@ class gameplay extends Phaser.Scene {
     }
     if (playerHealth == 0 && pause == undefined) {
       playerTimer.paused = true;
-      enemyTimer.paused = true
+      enemyTimer.paused = true;
+      if (playerShoot == true) {
+        playerShoot = false;
+      }
       if (player.anims.currentFrame.frame.name == 11 && player.anims.currentAnim.key == "playerDeath") {
         dead = true;
       } else {
@@ -288,7 +306,12 @@ class gameplay extends Phaser.Scene {
         this.physics.pause();
         dead = undefined;
         playerTimer.paused = true;
-        enemyTimer.paused = true
+        enemyTimer.paused = true;
+        if (playerBullet !== undefined) {
+          playerBullet.destroy();
+          playerBullet = undefined;
+        }
+        playerHealth = 150;
         pause = this.add.image(680, 384, "pause_defeat_chart");
         this.add.image(680, 284, "defeat_text_" + lang);
         b_retry = this.add
@@ -344,7 +367,11 @@ class gameplay extends Phaser.Scene {
       .setInteractive()
       .on("pointerover", () => b_main.setScale(1.1))
       .on("pointerout", () => b_main.setScale(1))
-      .on("pointerdown", () => this.scene.start("main"));
+      .on("pointerdown", () => {
+        playerHealth = 150;
+        enemyHealth = 150;
+        this.scene.start("main")
+      });
   }
   outPause() {
     count_b.destroy();
@@ -362,7 +389,6 @@ class gameplay extends Phaser.Scene {
     this.physics.resume();
     playerTimer.paused = false;
     enemyTimer.paused = false;
-    playerHealth = 150;
     enemyHealth = 150;
     this.scene.start("gameplay");
   }
@@ -370,7 +396,6 @@ class gameplay extends Phaser.Scene {
     this.physics.resume();
     playerTimer.paused = false;
     enemyTimer.paused = false;
-    playerHealth = 150;
     enemyHealth = 150;
     this.scene.start("main");
   }
