@@ -25,10 +25,12 @@ class help extends Phaser.Scene {
       .on("pointerdown", () => {
         if (t_pause.texture.key == "help_text_1_" + lang) {
           t_pause.setTexture("help_text_2_" + lang);
+          b_skip.setX(360).setAngle(180);
         } else {
           t_pause.setTexture("help_text_1_" + lang);
+          b_skip.setX(1000).setAngle(360);
         }
-      });
+    });
   }
 }
 

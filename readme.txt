@@ -65,3 +65,6 @@ v2.0:
 v2.1:
 	* Implementation of the help menu.
 	* Bug fixes.
+
+v2.1.1:
+	* Bug fixes.
