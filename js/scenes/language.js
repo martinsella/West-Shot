@@ -15,7 +15,11 @@ class language extends Phaser.Scene {
       .on("pointerout", () => b_es.setTexture("b_es"))
       .on("pointerdown", () => {
         lang = "es";
-        this.scene.start("start");
+        if (delay == 0) {
+          this.scene.start("main");
+        } else {
+          this.scene.start("start");
+        }
       });
 
     b_en = this.add
@@ -25,7 +29,11 @@ class language extends Phaser.Scene {
       .on("pointerout", () => b_en.setTexture("b_en"))
       .on("pointerdown", () => {
         lang = "en";
-        this.scene.start("start");
+        if (delay == 0) {
+          this.scene.start("main");
+        } else {
+          this.scene.start("start");
+        }
       });
 
     b_full = this.add

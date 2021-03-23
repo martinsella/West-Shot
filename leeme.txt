@@ -68,3 +68,8 @@ v2.1:
 
 v2.1.1:
 	* Corrección de bugs.
+
+v2.2:
+	* Cambio de ícono.
+	* Cambios en la pantalla de inicio.
+	* Cambios en los efectos de transición del menú principal.

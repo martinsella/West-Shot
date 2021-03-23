@@ -7,20 +7,20 @@ class main extends Phaser.Scene {
     //main.
     this.add.image(680, 384, "main_background");
     this.add.image(680, 548, "main_mountains");
-    this.add.image(1080, 414, "main_stick");
     player = this.physics.add.sprite(681, 434, "main_walk");
     player.anims.play("main_stop", true);
     this.time.addEvent({
-      delay: 500,
+      delay: count,
       callback: ()=> {
         this.add.image(299, 215, "main_title");
+        delay = 1000;
       },
       callbackScope: this,
       loop: false,
     });
 
     this.time.addEvent({
-      delay: 1000,
+      delay: delay,
       callback: this.buttons,
       callbackScope: this,
       loop: false,
@@ -28,7 +28,12 @@ class main extends Phaser.Scene {
   }
 
   buttons() {
-    //buttons.
+  if (delay == 1000) {
+    count = 0;
+    delay = 0;
+  }
+  this.add.image(1080, 414, "main_stick");
+  //buttons.
   b_play = this.add
     .image(1095, 215, "b_play_" + lang)
     .setInteractive()

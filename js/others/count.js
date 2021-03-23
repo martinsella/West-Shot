@@ -33,6 +33,7 @@ export function count_fire() {
 export function count_out() {
   count_b.destroy();
   count.destroy();
+  count = 0;
   this.physics.resume();
   pause = undefined;
 

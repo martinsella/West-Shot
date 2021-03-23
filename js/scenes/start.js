@@ -47,10 +47,11 @@ class start extends Phaser.Scene {
       player.setVelocityX(0);
       player.anims.play("main_stop", true);
       this.time.addEvent({
-        delay: 2000,
+        delay: delay,
         callback: ()=> {
           this.add.image(680, 154, "start_text_" + lang);
           walk = false;
+          delay = 1000;
         },
         callbackScope: this,
         loop: false,
