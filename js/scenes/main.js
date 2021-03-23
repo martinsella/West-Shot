@@ -47,7 +47,8 @@ class main extends Phaser.Scene {
     .image(1084, 446, "b_help_" + lang)
     .setInteractive()
     .on("pointerover", () => b_help.setTexture("b_help_over_" + lang))
-    .on("pointerout", () => b_help.setTexture("b_help_" + lang));
+    .on("pointerout", () => b_help.setTexture("b_help_" + lang))
+    .on("pointerdown", () => this.scene.start("help"));
 
   b_exit = this.add
     .image(1084, 550, "b_exit_" + lang)

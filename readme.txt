@@ -61,3 +61,7 @@ v2.0:
 	* Added transition effects to the main menu.
 	* Changes in the gameplay once a level has been won.
 	* Bug fixes.
+
+v2.1:
+	* Implementation of the help menu.
+	* Bug fixes.

@@ -8,7 +8,7 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
   }
 
   update() {
-    if (walk == true && enemyHealth !== 0 && enemyHealth !== 0) {
+    if (walk == true && enemyHealth !== 0) {
       enemy.anims.play("enemy_" + level + "_Left", true).setVelocityX(-150);
     } else if (pattern2 <= difficulty && enemyHealth !== 0) {
       enemy.anims.play("enemy_" + level + "_Shoot", true).setVelocityX(0);
@@ -16,7 +16,7 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
     } else if (pattern2 > difficulty && pattern2 <= 1 && enemyHealth !== 0) {
       enemy.anims.play("enemy_" + level + "_Stop", true).setVelocityX(0);
     }
-    if (enemy.anims.currentFrame.frame.name == 0 && enemy.anims.currentAnim.key !== "enemy_" + level + "_Death" && enemyHealth !== 0) {
+    if (enemy.anims.currentFrame.frame.name == 0 && enemyHealth !== 0) {
       pattern2 = 2;
       enemyShoot = false;
       enemy.anims.play("enemy_" + level + "_Stop", true);

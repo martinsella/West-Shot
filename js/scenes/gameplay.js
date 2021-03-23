@@ -172,6 +172,8 @@ class gameplay extends Phaser.Scene {
     //player and enemy.
     player = new Player({ scene: this, x: -80, y: 550, texture: "player_walk" });
     enemy = new Enemy({ scene: this, x: 1470, y: 550, texture: "enemy_" + level + "_walk" });
+    playerHealth = 150;
+    enemyHealth = 150;
     walk = true;
   }
   update() {
@@ -237,7 +239,6 @@ class gameplay extends Phaser.Scene {
         hat.destroy();
         dead = undefined;
         walk = false;
-        enemyHealth = 150;
         this.physics.pause();
         pause = this.add.image(680, 384, "victory_chart");
         this.add.image(680, 234, "victory_text_1_" + lang);
@@ -311,7 +312,6 @@ class gameplay extends Phaser.Scene {
           playerBullet.destroy();
           playerBullet = undefined;
         }
-        playerHealth = 150;
         pause = this.add.image(680, 384, "pause_defeat_chart");
         this.add.image(680, 284, "defeat_text_" + lang);
         b_retry = this.add
@@ -368,8 +368,6 @@ class gameplay extends Phaser.Scene {
       .on("pointerover", () => b_main.setScale(1.1))
       .on("pointerout", () => b_main.setScale(1))
       .on("pointerdown", () => {
-        playerHealth = 150;
-        enemyHealth = 150;
         this.scene.start("main")
       });
   }
@@ -389,14 +387,12 @@ class gameplay extends Phaser.Scene {
     this.physics.resume();
     playerTimer.paused = false;
     enemyTimer.paused = false;
-    enemyHealth = 150;
     this.scene.start("gameplay");
   }
   main() {
     this.physics.resume();
     playerTimer.paused = false;
     enemyTimer.paused = false;
-    enemyHealth = 150;
     this.scene.start("main");
   }
 }

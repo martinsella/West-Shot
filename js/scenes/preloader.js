@@ -23,6 +23,7 @@ class preloader extends Phaser.Scene {
     this.load.image("main_stick", "assets/images/undefined/menus/main_stick.png");
     this.load.image("language", "assets/images/undefined/menus/language.png");
     this.load.image("credits_chart", "assets/images/undefined/menus/credits_chart.png");
+    this.load.image("help_chart", "assets/images/undefined/menus/help_chart.png");
     this.load.image("collection", "assets/images/undefined/menus/collection.png");
     this.load.image("selector_chart", "assets/images/undefined/menus/selector_chart.png");
     this.load.image("pause_defeat_chart", "assets/images/undefined/menus/pause_defeat_chart.png");
@@ -113,6 +114,9 @@ class preloader extends Phaser.Scene {
     //english.
     this.load.image("start_text_en", "assets/images/english/texts/start_text_en.png");
     this.load.image("cred_text_en", "assets/images/english/texts/cred_text_en.png");
+    this.load.image("help_title_en", "assets/images/english/texts/help_title_en.png");
+    this.load.image("help_text_1_en", "assets/images/english/texts/help_text_1_en.png");
+    this.load.image("help_text_2_en", "assets/images/english/texts/help_text_2_en.png");
     this.load.image("count_fire_en", "assets/images/english/texts/count_fire_en.png");
     this.load.image("pause_text_en", "assets/images/english/texts/pause_text_en.png");
     this.load.image("victory_text_1_en", "assets/images/english/texts/victory_text_1_en.png");
@@ -121,6 +125,9 @@ class preloader extends Phaser.Scene {
     //spanish.
     this.load.image("start_text_es", "assets/images/spanish/texts/start_text_es.png");
     this.load.image("cred_text_es", "assets/images/spanish/texts/cred_text_es.png");
+    this.load.image("help_title_es", "assets/images/spanish/texts/help_title_es.png");
+    this.load.image("help_text_1_es", "assets/images/spanish/texts/help_text_1_es.png");
+    this.load.image("help_text_2_es", "assets/images/spanish/texts/help_text_2_es.png");
     this.load.image("count_fire_es", "assets/images/spanish/texts/count_fire_es.png");
     this.load.image("pause_text_es", "assets/images/spanish/texts/pause_text_es.png");
     this.load.image("victory_text_1_es", "assets/images/spanish/texts/victory_text_1_es.png");
