@@ -6,6 +6,8 @@ class language extends Phaser.Scene {
   create() {
     //menu.
     this.add.image(680, 384, "language");
+    click_01 = this.sound.add("click_01");
+    click_02 = this.sound.add("click_02");
 
     //buttons.
     b_es = this.add
@@ -15,6 +17,9 @@ class language extends Phaser.Scene {
       .on("pointerout", () => b_es.setTexture("b_es"))
       .on("pointerdown", () => {
         lang = "es";
+        if (sfx == "on") {
+          click_01.play();
+        }
         if (delay == 0) {
           this.scene.start("main");
         } else {
@@ -29,6 +34,9 @@ class language extends Phaser.Scene {
       .on("pointerout", () => b_en.setTexture("b_en"))
       .on("pointerdown", () => {
         lang = "en";
+        if (sfx == "on") {
+          click_01.play();
+        }
         if (delay == 0) {
           this.scene.start("main");
         } else {
@@ -43,8 +51,14 @@ class language extends Phaser.Scene {
       .on("pointerout", () => b_full.setTexture("b_full"))
       .on("pointerdown", () => {
         if (this.scale.isFullscreen) {
+          if (sfx == "on") {
+            click_02.play();
+          }
           this.scale.stopFullscreen();
         } else {
+          if (sfx == "on") {
+            click_01.play();
+          }
           this.scale.startFullscreen();
         }
       });

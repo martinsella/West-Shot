@@ -206,6 +206,25 @@ class preloader extends Phaser.Scene {
     this.load.image("hat_1_es", "assets/images/spanish/objects/hat_1_es.png");
     this.load.image("hat_2_es", "assets/images/spanish/objects/hat_2_es.png");
 
+    //audio load.
+    //music load.
+    this.load.audio("music", "assets/music/music.mp3");
+    this.load.audio("defeat", "assets/music/defeat.mp3");
+    //sfx load.
+    this.load.audio("click_01", "assets/sfx/click_01.mp3");
+    this.load.audio("click_02", "assets/sfx/click_02.mp3");
+    this.load.audio("gun_shot", "assets/sfx/gun_shot.mp3");
+    this.load.audio("win", "assets/sfx/win.mp3");
+    this.load.audio("wind", "assets/sfx/wind.mp3");
+
+    //videos load.
+    //undefined.
+    this.load.video('help_video_1', 'assets/videos/help_video_1.mp4', 'loadeddata', false, true);
+    //english.
+    this.load.video('help_video_2_en', 'assets/videos/help_video_2_en.mp4', 'loadeddata', false, true);
+    //spanish.
+    this.load.video('help_video_2_es', 'assets/videos/help_video_2_es.mp4', 'loadeddata', false, true);
+
     //levels load.
     this.load.image("count_background", "assets/images/undefined/levels/count_background.png");
     //level 1.

@@ -13,7 +13,12 @@ class selector extends Phaser.Scene {
       .setInteractive()
       .on("pointerover", () => b_back.setTexture("b_back_over"))
       .on("pointerout", () => b_back.setTexture("b_back"))
-      .on("pointerdown", () => this.scene.start("main"));
+      .on("pointerdown", () => {
+        if (sfx == "on") {
+          click_02.play();
+        }
+        this.scene.start("main")
+      });
 
     //level 1.
     b_1 = this.add
@@ -23,6 +28,9 @@ class selector extends Phaser.Scene {
       .on("pointerout", () => b_1.setScale(1))
       .on("pointerdown", () => {
         level = 1;
+        if (sfx == "on") {
+          click_01.play();
+        }
         this.scene.start("gameplay");
       });
 
@@ -43,6 +51,9 @@ class selector extends Phaser.Scene {
       .on("pointerdown", () => {
         if (lastWin >= 1) {
           level = 2;
+          if (sfx == "on") {
+            click_01.play();
+          }
           this.scene.start("gameplay");
         }
       });

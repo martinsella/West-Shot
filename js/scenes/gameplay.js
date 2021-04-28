@@ -8,6 +8,13 @@ class gameplay extends Phaser.Scene {
   }
 
   create() {
+    if (track != undefined && music == "on") {
+      track.pause();
+      track = undefined;
+    }
+    track = this.sound.add("wind", {volume: 0.2}, { loop: true });
+    gun_shot = this.sound.add("gun_shot", {volume: 0.2});
+    track.play();
     //level 1.
     if (level == 1) {
       difficulty = 0.20;
@@ -27,29 +34,37 @@ class gameplay extends Phaser.Scene {
     
     //buttons.
     b_music = this.add
-      .image(1180, 30, "b_music_on")
+      .image(1180, 30, "b_music_" + music)
       .setInteractive()
       .on("pointerover", () => b_music.setTexture("b_music_" + music + "_over"))
       .on("pointerout", () => b_music.setTexture("b_music_" + music))
       .on("pointerdown", () => {
         if (music == "on") {
           music = "off";
+          click_01.play();
+          track.pause();
+          track = undefined;
         } else {
           music = "on";
+          click_02.play();
+          track = this.sound.add("wind", {volume: 0.2}, { loop: true });
+          track.play();
         }
         b_music.setTexture("b_music_" + music + "_over");
       });
 
     b_sfx = this.add
-      .image(1220, 30, "b_sfx_on")
+      .image(1220, 30, "b_sfx_" + sfx)
       .setInteractive()
       .on("pointerover", () => b_sfx.setTexture("b_sfx_" + sfx + "_over"))
       .on("pointerout", () => b_sfx.setTexture("b_sfx_" + sfx))
       .on("pointerdown", () => {
         if (sfx == "on") {
           sfx = "off";
+          click_01.play();
         } else {
           sfx = "on";
+          click_02.play();
         }
         b_sfx.setTexture("b_sfx_" + sfx + "_over");
       });
@@ -61,8 +76,14 @@ class gameplay extends Phaser.Scene {
       .on("pointerout", () => b_full.setTexture("b_full"))
       .on("pointerdown", () => {
         if (this.scale.isFullscreen) {
+          if (sfx == "on") {
+            click_02.play();
+          }
           this.scale.stopFullscreen();
         } else {
+          if (sfx == "on") {
+            click_01.play();
+          }
           this.scale.startFullscreen();
         }
       });
@@ -82,6 +103,9 @@ class gameplay extends Phaser.Scene {
       })
       .on("pointerdown", () => {
         if (playerBar !== undefined && pause == undefined) {
+          if (sfx == "on") {
+            click_01.play();
+          }
           this.inPause();
           b_pause.setTexture("b_pause");
         }
@@ -174,6 +198,8 @@ class gameplay extends Phaser.Scene {
     enemy = new Enemy({ scene: this, x: 1470, y: 550, texture: "enemy_" + level + "_walk" });
     playerHealth = 150;
     enemyHealth = 150;
+    hat = undefined;
+    dead = undefined;
     walk = true;
   }
   update() {
@@ -186,6 +212,9 @@ class gameplay extends Phaser.Scene {
     if (player.anims.currentFrame.frame.name == 12 && player.anims.currentAnim.key == "playerShoot") {
       playerBullet = this.physics.add.image(200, 525, "bullet");
       playerBullet.setVelocityX(2000);
+      if (sfx == "on") {
+        gun_shot.play();
+      }
       //collider.
       this.physics.add.overlap(playerBullet, enemy, (playerBullet, enemy) => {
         playerBullet.destroy();
@@ -197,6 +226,9 @@ class gameplay extends Phaser.Scene {
     } else if (enemy.anims.currentFrame.frame.name == 17 && enemy.anims.currentAnim.key == "enemy_" + level + "_Shoot") {
       enemyBullet = this.physics.add.image(1140, 525, "bullet");
       enemyBullet.setVelocityX(-2000);
+      if (sfx == "on") {
+        gun_shot.play();
+      }
       //collider.
       this.physics.add.overlap(enemyBullet, player, (enemyBullet, player) => {
         enemyBullet.destroy();
@@ -226,23 +258,29 @@ class gameplay extends Phaser.Scene {
         enemy.anims.play("enemy_" + level + "_Dead", true);
         if (hat == undefined) {
           hat = this.physics.add
-            .image(1115, 650, "enemy_" + level + "_hat")
+            .image(1123, 650, "enemy_" + level + "_hat")
             .setScale(0.70)
             .setInteractive()
             .on("pointerdown", ()=> {
+              if (sfx == "on") {
+                click_01.play();
+              }
               playerBar.destroy();
               walk = true;
             })
         }
       }
       this.physics.add.overlap(player, hat, ()=> {
+        if (sfx == "on") {
+          end_sfx = this.sound.add("win", {volume: 0.4});
+          end_sfx.play();
+        }
         hat.destroy();
-        dead = undefined;
         walk = false;
         this.physics.pause();
         pause = this.add.image(680, 384, "victory_chart");
         this.add.image(680, 234, "victory_text_1_" + lang);
-        t_pause = this.add.image(680, 334, "victory_text_2_" + lang);
+        text = this.add.image(680, 334, "victory_text_2_" + lang);
         hat = this.add.image(680, 454, "hat_" + level + "_" + lang)
         b_skip = this.add
           .image(950, 534, "b_skip")
@@ -250,9 +288,11 @@ class gameplay extends Phaser.Scene {
           .on("pointerover", () => b_skip.setScale(1.1))
           .on("pointerout", () => b_skip.setScale(1))
           .on("pointerdown", () => {
+            if (sfx == "on") {
+              click_01.play();
+            }
             hat.destroy();
-            hat = undefined;
-            t_pause.destroy();
+            text.destroy();
             b_skip.destroy();
             b_next = this.add
               .image(685, 372, "b_next_" + lang)
@@ -260,6 +300,9 @@ class gameplay extends Phaser.Scene {
               .on("pointerover", () => b_next.setScale(1.1))
               .on("pointerout", () => b_next.setScale(1))
               .on("pointerdown", () => {
+                if (sfx == "on") {
+                  click_01.play();
+                }
                 if (level < 2) {
                   level += 1;
                   lastWin += 1;
@@ -272,6 +315,9 @@ class gameplay extends Phaser.Scene {
               .on("pointerover", () => b_main.setScale(1.1))
               .on("pointerout", () => b_main.setScale(1))
               .on("pointerdown", () => {
+                if (sfx == "on") {
+                  click_01.play();
+                }
                 if (level > lastWin) {
                   lastWin += 1;
                 }
@@ -283,6 +329,9 @@ class gameplay extends Phaser.Scene {
               .on("pointerover", () => b_retry.setScale(1.1))
               .on("pointerout", () => b_retry.setScale(1))
               .on("pointerdown", () => {
+                if (sfx == "on") {
+                  click_01.play();
+                }
                 if (level > lastWin) {
                   lastWin += 1;
                 }
@@ -305,13 +354,17 @@ class gameplay extends Phaser.Scene {
       if (dead == true) {
         player.anims.play("playerDead", true);
         this.physics.pause();
-        dead = undefined;
         playerTimer.paused = true;
         enemyTimer.paused = true;
         if (playerBullet !== undefined) {
           playerBullet.destroy();
           playerBullet = undefined;
         }
+        if (sfx == "on") {
+          end_sfx = this.sound.add("defeat", {volume: 0.2});
+          end_sfx.play();
+        }
+        enemyBar.destroy();
         pause = this.add.image(680, 384, "pause_defeat_chart");
         this.add.image(680, 284, "defeat_text_" + lang);
         b_retry = this.add
@@ -319,13 +372,23 @@ class gameplay extends Phaser.Scene {
           .setInteractive()
           .on("pointerover", () => b_retry.setScale(1.1))
           .on("pointerout", () => b_retry.setScale(1))
-          .on("pointerdown", () => this.restart());
+          .on("pointerdown", () => {
+            if (sfx == "on") {
+              click_01.play();
+            }
+            this.restart()
+          });
         b_main = this.add
           .image(685, 462, "b_main_" + lang)
           .setInteractive()
           .on("pointerover", () => b_main.setScale(1.1))
           .on("pointerout", () => b_main.setScale(1))
-          .on("pointerdown", () => this.main());
+          .on("pointerdown", () => {
+            if (sfx == "on") {
+              click_01.play();
+            }
+            this.main()
+          });
       }
     }
   }
@@ -350,13 +413,18 @@ class gameplay extends Phaser.Scene {
     enemyTimer.paused = true
     count_b = this.add.image(680, 384, "count_background");
     pause = this.add.image(680, 384, "pause_defeat_chart");
-    t_pause = this.add.image(683, 272, "pause_text_" + lang);
+    text = this.add.image(683, 272, "pause_text_" + lang);
     b_resume = this.add
       .image(685, 372, "b_resume_" + lang)
       .setInteractive()
       .on("pointerover", () => b_resume.setScale(1.1))
       .on("pointerout", () => b_resume.setScale(1))
-      .on("pointerdown", () => this.outPause());
+      .on("pointerdown", () => {
+        if (sfx == "on") {
+          click_01.play();
+        }
+        this.outPause()
+      });
     b_help = this.add
       .image(605, 452, "b_help_2_" + lang)
       .setInteractive()
@@ -368,13 +436,16 @@ class gameplay extends Phaser.Scene {
       .on("pointerover", () => b_main.setScale(1.1))
       .on("pointerout", () => b_main.setScale(1))
       .on("pointerdown", () => {
-        this.scene.start("main")
+        if (sfx == "on") {
+          click_01.play();
+        }
+        this.main();
       });
   }
   outPause() {
     count_b.destroy();
     pause.destroy();
-    t_pause.destroy();
+    text.destroy();
     b_resume.destroy();
     b_help.destroy();
     b_main.destroy();
@@ -390,9 +461,12 @@ class gameplay extends Phaser.Scene {
     this.scene.start("gameplay");
   }
   main() {
-    this.physics.resume();
     playerTimer.paused = false;
     enemyTimer.paused = false;
+    if (track != undefined && music == "on") {
+      track.pause();
+      track = undefined;
+    }
     this.scene.start("main");
   }
 }

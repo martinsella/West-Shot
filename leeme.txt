@@ -73,3 +73,9 @@ v2.2:
 	* Cambio de ícono.
 	* Cambios en la pantalla de inicio.
 	* Cambios en los efectos de transición del menú principal.
+
+v2.3:
+	* Implementación de música y sfx.
+	* Implementación de videos en el menú de ayuda.
+	* Corrección de bugs.
+	* Optimización del código.

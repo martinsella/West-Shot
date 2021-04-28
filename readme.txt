@@ -73,3 +73,9 @@ v2.2:
 	* Icon change.
 	* Changes to the home screen.
 	* Changes in the transition effects of the main menu.
+
+v2.3:
+	* Implementation of music and sfx.
+	* Implementation of videos in the help menu.
+	* Bug fixes.
+	* Code optimization.

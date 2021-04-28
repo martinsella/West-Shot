@@ -14,7 +14,12 @@ class credits extends Phaser.Scene {
       .setInteractive()
       .on("pointerover", () => b_back.setTexture("b_back_over"))
       .on("pointerout", () => b_back.setTexture("b_back"))
-      .on("pointerdown", () => this.scene.start("main"));
+      .on("pointerdown", () => {
+        if (sfx == "on") {
+          click_02.play();
+        }
+        this.scene.start("main")
+      });
 
   }
 }

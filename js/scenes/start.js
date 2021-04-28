@@ -35,8 +35,14 @@ class start extends Phaser.Scene {
       .on("pointerout", () => b_full.setTexture("b_full"))
       .on("pointerdown", () => {
         if (this.scale.isFullscreen) {
+          if (sfx == "on") {
+            click_02.play();
+          }
           this.scale.stopFullscreen();
         } else {
+          if (sfx == "on") {
+            click_01.play();
+          }
           this.scale.startFullscreen();
         }
     });
@@ -58,6 +64,9 @@ class start extends Phaser.Scene {
       });
     }
     if (game.input.mousePointer.isDown && walk == false) {
+      if (sfx == "on") {
+        click_01.play();
+      }
       this.scene.start("main");
     }
   }
