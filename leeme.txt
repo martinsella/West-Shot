@@ -82,3 +82,7 @@ v2.3:
 
 v2.3.1:
 	* Corrección de bugs.
+
+v2.4:
+	* Cambios en el sistema de dificultad.
+	* Cambios menores.

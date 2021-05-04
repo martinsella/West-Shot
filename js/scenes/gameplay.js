@@ -15,23 +15,26 @@ class gameplay extends Phaser.Scene {
       track.play();
     }
     gun_shot = this.sound.add("gun_shot", {volume: 0.2});
+    //difficulty depending on the level.
+    if (level <= 5) {
+      difficulty = Phaser.Math.FloatBetween(0.45, 0.60);
+    }
     //level 1.
     if (level == 1) {
-      difficulty = 0.20;
       this.add.image(680, 384, "level_1_sky");
       this.physics.add.image(1480, 74, "level_1_cloud_1").setVelocityX(-20);
       this.physics.add.image(1780, 164, "level_1_cloud_2").setVelocityX(-20);
       this.add.image(680, 456, "level_1_mountains");
       this.add.image(680, 301, "level_1_building");
+    //level 2.
     } else if (level >= 2) {
-      difficulty = 0.25;
       this.add.image(680, 384, "level_2");
       this.add.image(680, 177, "level_2_sky");
       this.physics.add.image(1610, 74, "level_2_cloud_1").setVelocityX(-20);
       this.physics.add.image(1910, 164, "level_2_cloud_2").setVelocityX(-20);
       this.add.image(680, 456, "level_2_mountains");
     }
-    
+
     //buttons.
     b_music = this.add
       .image(1180, 30, "b_music_" + music)
@@ -238,6 +241,7 @@ class gameplay extends Phaser.Scene {
           .fillRect(100, 390, (playerHealth -= 12.5), 19);
       }, null, this);
     }
+    //player victory.
     if (enemyHealth == 0 && pause == undefined) {
       playerTimer.paused = true;
       enemyTimer.paused = true;
@@ -341,6 +345,7 @@ class gameplay extends Phaser.Scene {
           });
       })
     }
+    //player defeat.
     if (playerHealth == 0 && pause == undefined) {
       playerTimer.paused = true;
       enemyTimer.paused = true;
@@ -394,7 +399,7 @@ class gameplay extends Phaser.Scene {
       }
     }
   }
-  //count.
+  //count before the gameplay.
   count_3() {
     player.anims.play("playerStop", true).setVelocityX(0);
     enemy.anims.play("enemy_" + level + "_Stop", true).setVelocityX(0);
@@ -408,7 +413,7 @@ class gameplay extends Phaser.Scene {
       loop: false,
     });
   }
-  //pause menu.
+  //go to the pause menu.
   inPause() {
     this.physics.pause();
     playerTimer.paused = true;
@@ -444,6 +449,7 @@ class gameplay extends Phaser.Scene {
         this.main();
       });
   }
+  //out pause.
   outPause() {
     count_b.destroy();
     pause.destroy();
@@ -456,12 +462,14 @@ class gameplay extends Phaser.Scene {
     playerTimer.paused = false;
     enemyTimer.paused = false;
   }
+  //restart level.
   restart() {
     this.physics.resume();
     playerTimer.paused = false;
     enemyTimer.paused = false;
     this.scene.start("gameplay");
   }
+  //out gameplay, and go to the main menu.
   main() {
     playerTimer.paused = false;
     enemyTimer.paused = false;
