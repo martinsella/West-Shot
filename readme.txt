@@ -79,3 +79,6 @@ v2.3:
 	* Implementation of videos in the help menu.
 	* Bug fixes.
 	* Code optimization.
+
+v2.3.1:
+	* Bug fixes.

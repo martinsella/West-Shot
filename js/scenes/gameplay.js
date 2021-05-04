@@ -11,10 +11,10 @@ class gameplay extends Phaser.Scene {
     if (track != undefined && music == "on") {
       track.pause();
       track = undefined;
+      track = this.sound.add("wind", {volume: 0.2}, { loop: true });
+      track.play();
     }
-    track = this.sound.add("wind", {volume: 0.2}, { loop: true });
     gun_shot = this.sound.add("gun_shot", {volume: 0.2});
-    track.play();
     //level 1.
     if (level == 1) {
       difficulty = 0.20;
@@ -278,6 +278,7 @@ class gameplay extends Phaser.Scene {
         hat.destroy();
         walk = false;
         this.physics.pause();
+        this.add.image(680, 384, "count_background");
         pause = this.add.image(680, 384, "victory_chart");
         this.add.image(680, 234, "victory_text_1_" + lang);
         text = this.add.image(680, 334, "victory_text_2_" + lang);
@@ -365,6 +366,7 @@ class gameplay extends Phaser.Scene {
           end_sfx.play();
         }
         enemyBar.destroy();
+        this.add.image(680, 384, "count_background");
         pause = this.add.image(680, 384, "pause_defeat_chart");
         this.add.image(680, 284, "defeat_text_" + lang);
         b_retry = this.add
