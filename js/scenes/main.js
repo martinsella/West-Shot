@@ -40,7 +40,7 @@ class main extends Phaser.Scene {
   this.add.image(1080, 414, "main_stick");
   //buttons.
   b_play = this.add
-    .image(1095, 215, "b_play_" + lang)
+    .image(1095, 225, "b_play_" + lang)
     .setInteractive()
     .on("pointerover", () => b_play.setTexture("b_play_over_" + lang))
     .on("pointerout", () => b_play.setTexture("b_play_" + lang))
@@ -52,7 +52,7 @@ class main extends Phaser.Scene {
     });
 
   b_collection = this.add
-    .image(1081, 335, "b_collection_" + lang)
+    .image(1081, 355, "b_collection_" + lang)
     .setInteractive()
     .on("pointerover", () => b_collection.setTexture("b_collection_over_" + lang))
     .on("pointerout", () => b_collection.setTexture("b_collection_" + lang))
@@ -64,7 +64,7 @@ class main extends Phaser.Scene {
     });
 
   b_help = this.add
-    .image(1084, 446, "b_help_" + lang)
+    .image(1084, 476, "b_help_" + lang)
     .setInteractive()
     .on("pointerover", () => b_help.setTexture("b_help_over_" + lang))
     .on("pointerout", () => b_help.setTexture("b_help_" + lang))
@@ -73,18 +73,6 @@ class main extends Phaser.Scene {
         click_01.play();
       }
       this.scene.start("help")
-    });
-
-  b_exit = this.add
-    .image(1084, 550, "b_exit_" + lang)
-    .setInteractive()
-    .on("pointerover", () => b_exit.setTexture("b_exit_over_" + lang))
-    .on("pointerout", () => b_exit.setTexture("b_exit_" + lang))
-    .on("pointerdown", () => {
-      if (sfx == "on") {
-        click_01.play();
-      }
-      window.location.href = "http://www.google.com";
     });
 
   b_language = this.add

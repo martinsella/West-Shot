@@ -80,8 +80,6 @@ class preloader extends Phaser.Scene {
     //english.
     this.load.image("b_collection_en", "assets/images/english/buttons/b_collection_en.png");
     this.load.image("b_collection_over_en", "assets/images/english/buttons/b_collection_over_en.png");
-    this.load.image("b_exit_en", "assets/images/english/buttons/b_exit_en.png");
-    this.load.image("b_exit_over_en", "assets/images/english/buttons/b_exit_over_en.png");
     this.load.image("b_help_en", "assets/images/english/buttons/b_help_en.png");
     this.load.image("b_help_over_en", "assets/images/english/buttons/b_help_over_en.png");
     this.load.image("b_play_en", "assets/images/english/buttons/b_play_en.png");
@@ -94,8 +92,6 @@ class preloader extends Phaser.Scene {
     //spanish.
     this.load.image("b_collection_es", "assets/images/spanish/buttons/b_collection_es.png");
     this.load.image("b_collection_over_es", "assets/images/spanish/buttons/b_collection_over_es.png");
-    this.load.image("b_exit_es", "assets/images/spanish/buttons/b_exit_es.png");
-    this.load.image("b_exit_over_es", "assets/images/spanish/buttons/b_exit_over_es.png");
     this.load.image("b_help_es", "assets/images/spanish/buttons/b_help_es.png");
     this.load.image("b_help_over_es", "assets/images/spanish/buttons/b_help_over_es.png");
     this.load.image("b_play_es", "assets/images/spanish/buttons/b_play_es.png");

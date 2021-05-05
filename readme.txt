@@ -92,3 +92,6 @@ v2.4.1:
 
 v2.4.1.1:
 	* Bug fixes.
+
+v2.4.2:
+	* Elimination of the exit button (Unnecessary).
