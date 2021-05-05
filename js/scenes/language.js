@@ -10,6 +10,20 @@ class language extends Phaser.Scene {
     click_02 = this.sound.add("click_02");
 
     //buttons.
+    if (delay == 0) {
+      b_back = this.add
+      .image(50, 45, "b_back")
+      .setInteractive()
+      .on("pointerover", () => b_back.setTexture("b_back_over"))
+      .on("pointerout", () => b_back.setTexture("b_back"))
+      .on("pointerdown", () => {
+        if (sfx == "on") {
+          click_02.play();
+        }
+        this.scene.start("main");
+      });
+    }
+
     b_es = this.add
       .image(470, 359, "b_es")
       .setInteractive()
