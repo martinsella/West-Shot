@@ -427,7 +427,7 @@ class gameplay extends Phaser.Scene {
       .on("pointerover", () => b_resume.setScale(1.1))
       .on("pointerout", () => b_resume.setScale(1))
       .on("pointerdown", () => {
-        if (help !== undefined) {
+        if (help == undefined) {
           if (sfx == "on") {
             click_01.play();
           }
@@ -440,7 +440,7 @@ class gameplay extends Phaser.Scene {
       .on("pointerover", () => b_help.setScale(1.1))
       .on("pointerout", () => b_help.setScale(1))
       .on("pointerdown", () => {
-        if (help !== undefined) {
+        if (help == undefined) {
           if (sfx == "on") {
             click_01.play();
           }
@@ -453,7 +453,7 @@ class gameplay extends Phaser.Scene {
       .on("pointerover", () => b_main.setScale(1.1))
       .on("pointerout", () => b_main.setScale(1))
       .on("pointerdown", () => {
-        if (help !== undefined) {
+        if (help == undefined) {
           if (sfx == "on") {
             click_01.play();
           }
