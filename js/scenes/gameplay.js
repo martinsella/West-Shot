@@ -427,27 +427,91 @@ class gameplay extends Phaser.Scene {
       .on("pointerover", () => b_resume.setScale(1.1))
       .on("pointerout", () => b_resume.setScale(1))
       .on("pointerdown", () => {
-        if (sfx == "on") {
-          click_01.play();
+        if (help !== undefined) {
+          if (sfx == "on") {
+            click_01.play();
+          }
+          this.outPause()
         }
-        this.outPause()
       });
     b_help = this.add
       .image(605, 452, "b_help_2_" + lang)
       .setInteractive()
       .on("pointerover", () => b_help.setScale(1.1))
-      .on("pointerout", () => b_help.setScale(1));
+      .on("pointerout", () => b_help.setScale(1))
+      .on("pointerdown", () => {
+        if (help !== undefined) {
+          if (sfx == "on") {
+            click_01.play();
+          }
+          this.help()
+        }
+      });
     b_main = this.add
       .image(765, 452, "b_main_" + lang)
       .setInteractive()
       .on("pointerover", () => b_main.setScale(1.1))
       .on("pointerout", () => b_main.setScale(1))
       .on("pointerdown", () => {
-        if (sfx == "on") {
-          click_01.play();
+        if (help !== undefined) {
+          if (sfx == "on") {
+            click_01.play();
+          }
+          this.main();
         }
-        this.main();
       });
+  }
+  help() {
+    help = this.add.image(680, 384, "count_background");
+    chart = this.add.image(680, 384, "help_chart");
+    title = this.add.image(680, 192, "help_title_" + lang);
+    text_2 = this.add.image(680, 574, "help_text_1_" + lang);
+    video = this.add.video(680, 384, 'help_video_1').setScale(0.4)
+    video.play(true);
+
+    //buttons.
+    b_back = this.add
+      .image(50, 45, "b_back")
+      .setInteractive()
+      .on("pointerover", () => b_back.setTexture("b_back_over"))
+      .on("pointerout", () => b_back.setTexture("b_back"))
+      .on("pointerdown", () => {
+        if (sfx == "on") {
+          click_02.play();
+        }
+        help.destroy();
+        chart.destroy();
+        title.destroy();
+        text_2.destroy();
+        video.destroy();
+        b_back.destroy();
+        b_skip.destroy();
+        help = undefined;
+      });
+
+    b_skip = this.add
+      .image(1000, 390, "b_skip")
+      .setInteractive()
+      .setScale(0.7)
+      .on("pointerover", () => b_skip.setScale(0.8))
+      .on("pointerout", () => b_skip.setScale(0.7))
+      .on("pointerdown", () => {
+        if (text_2.texture.key == "help_text_1_" + lang) {
+          if (sfx == "on") {
+            click_01.play();
+          }
+          video.changeSource('help_video_2_' + lang).setScale(0.4);
+          text_2.setTexture("help_text_2_" + lang);
+          b_skip.setX(360).setAngle(180);
+        } else {
+          if (sfx == "on") {
+            click_02.play();
+          }
+          video.changeSource('help_video_1').setScale(0.4);
+          text_2.setTexture("help_text_1_" + lang);
+          b_skip.setX(1000).setAngle(360);
+        }
+    });
   }
   //out pause.
   outPause() {

@@ -86,3 +86,6 @@ v2.3.1:
 v2.4:
 	* Difficulty system changes.
 	* Minor changes.
+
+v2.4.1:	
+	* Bug fixes.

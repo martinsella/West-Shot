@@ -4,9 +4,9 @@ class help extends Phaser.Scene {
   }
   create() {
     this.add.image(680, 384, "menus_background");
-    this.add.image(680, 384, "help_chart");
-    this.add.image(680, 192, "help_title_" + lang);
-    text = this.add.image(680, 574, "help_text_1_" + lang);
+    chart = this.add.image(680, 384, "help_chart");
+    title = this.add.image(680, 192, "help_title_" + lang);
+    text_2 = this.add.image(680, 574, "help_text_1_" + lang);
     video = this.add.video(680, 384, 'help_video_1').setScale(0.4)
     video.play(true);
 
@@ -20,7 +20,10 @@ class help extends Phaser.Scene {
         if (sfx == "on") {
           click_02.play();
         }
-        this.scene.start("main")
+        chart.destroy();
+        title.destroy();
+        text_2.destroy();
+        video.destroy();
       });
 
     b_skip = this.add
